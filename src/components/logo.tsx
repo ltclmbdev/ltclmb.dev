@@ -83,11 +83,10 @@ const Logo: React.FC = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="167"
-      height="52"
       fill="none"
       viewBox="0 0 167 52"
-      suppressHydrationWarning
+      preserveAspectRatio="xMinYMid meet"
+      className="w-full h-auto max-w-[167px]"
     >
       <g fill="var(--logo-fill)">
         <g>
