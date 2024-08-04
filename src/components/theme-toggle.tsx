@@ -25,10 +25,10 @@ export function ThemeToggle() {
         <TooltipTrigger asChild>
           <Button variant={null} size="icon" onClick={toggleTheme}>
             <div className="text-xl md:text-2xl rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0">
-              <Icon name="Moon" size="16" />
+              <Icon name="Moon" size="20" />
             </div>
             <div className="absolute text-xl md:text-2xl rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100">
-              <Icon name="Sun" size="16" />
+              <Icon name="Sun" size="20" />
             </div>
             <span className="sr-only">Toggle theme</span>
           </Button>
