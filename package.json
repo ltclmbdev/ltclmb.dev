@@ -24,6 +24,7 @@
     "react": "^18",
     "react-dom": "^18",
     "sanity": "^3.53.0",
+    "sanity-plugin-markdown": "^4.1.2",
     "styled-components": "^6.1.12",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7"

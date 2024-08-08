@@ -73,3 +73,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+#sanity {
+  @apply w-full !h-auto;
+}
