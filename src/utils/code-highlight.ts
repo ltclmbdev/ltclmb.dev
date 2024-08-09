@@ -10,7 +10,7 @@ let highlighter: HighlighterGeneric<BundledLanguage, BundledTheme> | null = null
 export async function getHighlighter() {
   if (highlighter) return highlighter
   highlighter = await getSingletonHighlighter({
-    themes: ['nord', 'one-dark-pro'],
+    themes: ['nord', 'material-theme-palenight'],
     langs: [
       'typescript',
       'javascript',
@@ -31,6 +31,6 @@ export function highlightCode(code: string, language: string) {
 
   return highlighter.codeToHtml(code, {
     lang: language as BundledLanguage,
-    themes: { light: 'nord', dark: 'one-dark-pro' },
+    themes: { light: 'nord', dark: 'material-theme-palenight' },
   })
 }

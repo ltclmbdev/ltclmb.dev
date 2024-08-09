@@ -15,7 +15,7 @@ import {
 import Author from '@/components/author'
 
 const RecentPostPreview: React.FC<{ post: Post }> = ({ post }) => (
-  <div className="bg-gradient-to-tr from-blue-600 to-indigo-500 rounded-lg shadow-2xl shadow-gray-500/20">
+  <div className="bg-gradient-to-tr from-[#538392] to-[#76ABAE] rounded-lg shadow-2xl shadow-gray-500/20">
     <Card className="bg-transparent rounded-nonem text-white">
       <Link href={`/posts/${post.slug.current}`} className="block">
         <CardContent className="flex gap-5 pt-6">
@@ -53,10 +53,10 @@ const RecentPostPreview: React.FC<{ post: Post }> = ({ post }) => (
 )
 
 const PostPreview: React.FC<{ post: Post }> = ({ post }) => (
-  <Card className="shadow-2xl shadow-gray-500/20 overflow-hidden">
+  <Card className="shadow-2xl shadow-gray-500/20 overflow-hidden dark:shadow-none">
     <Link
       href={`/posts/${post.slug.current}`}
-      className="bg-slate-50 duration-150 dark:bg-white/10 hover:bg-white hover:dark:bg-white/15 block"
+      className="bg-slate-100 duration-150 dark:bg-[#31363F] hover:bg-white hover:dark:bg-white/25 block"
     >
       <CardHeader className="pb-3">
         <CardTitle>{post.title}</CardTitle>

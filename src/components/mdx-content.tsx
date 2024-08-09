@@ -32,32 +32,33 @@ const CodeComponent: React.FC<
   return <div dangerouslySetInnerHTML={{ __html: highlightedCode }} />
 }
 
-// const ImageComponent: React.FC<
-//   React.ImgHTMLAttributes<HTMLImageElement>
-// > = props => {
-//   const { src, alt, width, height, ...rest } = props
+const ImageComponent: React.FC<
+  React.ImgHTMLAttributes<HTMLImageElement>
+> = props => {
+  const { src, alt, width, height, ...rest } = props
 
-//   if (!src) {
-//     return null
-//   }
+  if (!src) {
+    return null
+  }
 
-//   return (
-//     <span className="image-wrapper">
-//       <Image
-//         src={src}
-//         alt={alt || ''}
-//         width={Number(width) || 600}
-//         height={Number(height) || 400}
-//         {...rest}
-//       />
-//     </span>
-//   )
-// }
+  return (
+    <span className="rounded-lg overflow-hidden border border-muted block not-prose my-10">
+      <Image
+        src={src}
+        alt={alt || ''}
+        width={Number(width) || 600}
+        height={Number(height) || 400}
+        {...rest}
+        className="w-full"
+      />
+    </span>
+  )
+}
 
 const components: MDXRemoteProps['components'] = {
   code: CodeComponent,
   pre: ({ children }) => children,
-  // img: ImageComponent,
+  img: ImageComponent,
 }
 
 interface MdxContentProps {
