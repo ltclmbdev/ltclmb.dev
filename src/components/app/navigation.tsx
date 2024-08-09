@@ -10,7 +10,8 @@ export const Navigation = () => {
         <Link href="/" className="w-32 md:w-auto">
           <Logo />
         </Link>
-        <div className="flex items-center">
+        <div className="flex items-center space-x-2">
+          <Link href="/posts">Posts</Link>
           <ThemeToggle />
         </div>
       </nav>
