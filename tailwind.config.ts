@@ -134,6 +134,12 @@ const config = {
       addComponents({
         '.container': {
           maxWidth: '100%',
+          '@screen lg': {
+            maxWidth: '1024px',
+          },
+          '@screen xl': {
+            maxWidth: '1160px',
+          },
           '@screen 2xl': {
             maxWidth: '1328px',
           },
