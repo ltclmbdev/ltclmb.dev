@@ -21,6 +21,8 @@ type Post = {
   body: string
 }
 
+export const revalidate = 60
+
 async function getPost(slug: string): Promise<Post> {
   return client.fetch(
     `*[_type == "post" && slug.current == $slug][0]{
