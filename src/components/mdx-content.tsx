@@ -54,7 +54,5 @@ export default async function MdxContent({ children }: MdxContentProps) {
     },
   })
 
-  return (
-    <div className="prose prose-lg max-w-none dark:prose-dark">{content}</div>
-  )
+  return content
 }

@@ -4,9 +4,9 @@ import { SanityDocument } from '@sanity/client'
 import Image from 'next/image'
 import MdxContent from '@/components/mdx-content'
 
-// Define the Post type
 type Post = {
   _id: string
+  publishedAt: string
   title: string
   slug: {
     current: string
@@ -19,10 +19,8 @@ type Post = {
     secure_url: string
   }
   body: string
-  publishedAt: string
 }
 
-// Fetch post data from Sanity
 async function getPost(slug: string): Promise<Post> {
   return client.fetch(
     `*[_type == "post" && slug.current == $slug][0]{
@@ -65,13 +63,14 @@ export default async function PostPage({
             className="mb-8 rounded-lg"
           />
         )}
-        <MdxContent>{post.body}</MdxContent>
+        <div className="prose prose-lg max-w-none dark:prose-dark">
+          <MdxContent>{post.body}</MdxContent>
+        </div>
       </article>
     </div>
   )
 }
 
-// Generate static params for all posts
 export async function generateStaticParams() {
   const posts = await client.fetch(`*[_type == "post"]{ slug }`)
   return posts.map((post: SanityDocument) => ({
