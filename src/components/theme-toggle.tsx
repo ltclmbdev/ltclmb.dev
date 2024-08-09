@@ -23,7 +23,12 @@ export function ThemeToggle() {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button variant={null} size="icon" onClick={toggleTheme}>
+          <Button
+            variant={null}
+            size="icon"
+            onClick={toggleTheme}
+            className="px-0 w-auto"
+          >
             <div className="text-xl md:text-2xl rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 cursor-pointer">
               <Icon name="Moon" size="20" />
             </div>
