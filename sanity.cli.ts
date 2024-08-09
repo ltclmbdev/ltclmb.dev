@@ -4,6 +4,8 @@
  **/
 import { defineCliConfig } from 'sanity/cli'
 
+// const projectId = 'wtc367za'
+// const dataset = 'production'
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
 
