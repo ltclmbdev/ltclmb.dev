@@ -45,7 +45,6 @@ export default async function PostPage({
   params: { slug: string }
 }) {
   const post = await getPost(params.slug)
-  console.log('post', post)
 
   return (
     <div className="container">
