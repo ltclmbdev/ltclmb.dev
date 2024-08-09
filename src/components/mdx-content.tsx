@@ -1,4 +1,5 @@
-import React from 'react'
+import * as React from 'react'
+import Image from 'next/image'
 import { compileMDX } from 'next-mdx-remote/rsc'
 import { MDXRemoteProps } from 'next-mdx-remote/rsc'
 import { getHighlighter, highlightCode } from '@/utils/code-highlight'
@@ -31,9 +32,32 @@ const CodeComponent: React.FC<
   return <div dangerouslySetInnerHTML={{ __html: highlightedCode }} />
 }
 
+// const ImageComponent: React.FC<
+//   React.ImgHTMLAttributes<HTMLImageElement>
+// > = props => {
+//   const { src, alt, width, height, ...rest } = props
+
+//   if (!src) {
+//     return null
+//   }
+
+//   return (
+//     <span className="image-wrapper">
+//       <Image
+//         src={src}
+//         alt={alt || ''}
+//         width={Number(width) || 600}
+//         height={Number(height) || 400}
+//         {...rest}
+//       />
+//     </span>
+//   )
+// }
+
 const components: MDXRemoteProps['components'] = {
   code: CodeComponent,
   pre: ({ children }) => children,
+  // img: ImageComponent,
 }
 
 interface MdxContentProps {

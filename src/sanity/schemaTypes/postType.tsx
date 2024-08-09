@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { DocumentTextIcon } from '@sanity/icons'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
@@ -28,6 +29,9 @@ export const postType = defineType({
       title: 'Main image',
       type: 'cloudinary.asset',
       description: 'This image will be used for the main image of the post',
+      options: {
+        hotspot: true,
+      },
     }),
     defineField({
       name: 'categories',
@@ -40,7 +44,6 @@ export const postType = defineType({
     }),
     defineField({
       name: 'body',
-      // type: 'blockContent',
       type: 'markdown',
     }),
   ],
@@ -51,8 +54,19 @@ export const postType = defineType({
       media: 'mainImage',
     },
     prepare(selection) {
-      const { author } = selection
-      return { ...selection, subtitle: author && `by ${author}` }
+      const { author, media } = selection
+      return {
+        ...selection,
+        subtitle: author && `by ${author}`,
+        media: (
+          <Image
+            src={media.secure_url}
+            alt="Preview"
+            fill
+            className="!object-cover"
+          />
+        ),
+      }
     },
   },
 })
