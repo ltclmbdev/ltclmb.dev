@@ -5,7 +5,6 @@ import { cn } from '@/utils/cn'
 
 const ImageWithBlur: React.FC<ImageProps> = async props => {
   const { src, alt, width, height, className, ...rest } = props
-  console.log({ className })
 
   if (!src || typeof src !== 'string') {
     return null
