@@ -1,6 +1,5 @@
 import React from 'react'
 import { client } from '@/sanity/lib/client'
-import { SanityDocument } from '@sanity/client'
 import Image from 'next/image'
 import MdxContent from '@/components/mdx-content'
 import { getAllPosts, getPostBySlug, type Post } from '@/lib/posts'
@@ -13,12 +12,16 @@ export default async function PostPage({
 }) {
   const post = await getPostBySlug(params.slug)
 
-  return <PostTemplate post={post} />
+  return (
+    <div className="container pb-40 pt-8 md:pt-12">
+      <PostTemplate post={post} />
+    </div>
+  )
 }
 
 export async function generateStaticParams() {
   const posts = await getAllPosts()
-  return posts.map((post: SanityDocument) => ({
+  return posts.map(post => ({
     slug: post.slug.current,
   }))
 }

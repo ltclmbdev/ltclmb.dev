@@ -1,9 +1,104 @@
 import * as React from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import { isEmpty } from 'lodash'
+import { getAllPosts, type Post } from '@/lib/posts'
+import { formatDate } from '@/utils/format-date'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import Author from '@/components/author'
 
-export default function Posts() {
+const RecentPostPreview: React.FC<{ post: Post }> = ({ post }) => (
+  <div className="bg-gradient-to-tr from-blue-600 to-indigo-500 rounded-lg shadow-2xl shadow-gray-500/20">
+    <Card className="bg-transparent rounded-nonem text-white">
+      <Link href={`/posts/${post.slug.current}`} className="block">
+        <CardContent className="flex gap-5 pt-6">
+          <div className="lg:w-1/2 flex flex-col">
+            <div className="grow">
+              <CardTitle className="text-2xl xl:text-3xl line-clamp-2">
+                {post.title}
+              </CardTitle>
+              <p className="text-white/50 mt-2 xl:mt-4">
+                {formatDate(post.publishedAt)}
+              </p>
+              <p className="mt-6 xl:mt-8 line-clamp-5 xl:line-clamp-6 text-lg">
+                {post.description}
+              </p>
+            </div>
+            <Author className="mt-4" />
+          </div>
+          <div className="hidden lg:block w-1/2">
+            {post.mainImage && (
+              <div className="rounded-lg overflow-hidden">
+                <Image
+                  src={post.mainImage.secure_url}
+                  alt={post.title}
+                  width={300}
+                  height={200}
+                  className="w-full"
+                />
+              </div>
+            )}
+          </div>
+        </CardContent>
+      </Link>
+    </Card>
+  </div>
+)
+
+const PostPreview: React.FC<{ post: Post }> = ({ post }) => (
+  <Card className="shadow-2xl shadow-gray-500/20 overflow-hidden">
+    <Link
+      href={`/posts/${post.slug.current}`}
+      className="bg-slate-50 duration-150 dark:bg-white/10 hover:bg-white hover:dark:bg-white/15 block"
+    >
+      <CardHeader className="pb-3">
+        <CardTitle>{post.title}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className="text-muted-foreground">{formatDate(post.publishedAt)}</p>
+        <p className="mt-4 xl:mt-6 line-clamp-6 md:line-clamp-3">
+          {post.description}
+        </p>
+      </CardContent>
+      <CardFooter>
+        <Author />
+      </CardFooter>
+    </Link>
+  </Card>
+)
+
+export default async function PostsPage() {
+  const posts = await getAllPosts()
+  const sortedPosts: Post[] = posts.sort(
+    (a: Post, b: Post) =>
+      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+  )
+  const recentPost: Post | null = isEmpty(sortedPosts) ? null : sortedPosts[0]
+  const restPosts: Post[] = sortedPosts.length > 1 ? sortedPosts.slice(1) : []
+
   return (
-    <main>
-      <div>PostsPage</div>
-    </main>
+    <div className="container pb-40 pt-8 md:pt-12">
+      <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+        All Posts
+      </h1>
+      <h2 className="text-base text-muted-foreground font-medium md:text-lg mb-10 md:mb-16 text-center">
+        Here I post my modest thoughts on front-end development
+      </h2>
+      {recentPost && <RecentPostPreview post={recentPost} />}
+      {!isEmpty(restPosts) && (
+        <div className="grid md:grid-cols-2 gap-5 mt-5">
+          {restPosts.map(post => (
+            <PostPreview key={post._id} post={post} />
+          ))}
+        </div>
+      )}
+    </div>
   )
 }
