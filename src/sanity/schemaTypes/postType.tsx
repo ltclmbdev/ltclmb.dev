@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { DocumentTextIcon } from '@sanity/icons'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
@@ -59,11 +58,10 @@ export const postType = defineType({
         ...selection,
         subtitle: author && `by ${author}`,
         media: (
-          <Image
+          <img
             src={media.secure_url}
             alt="Preview"
-            fill
-            className="!object-cover"
+            style={{ objectFit: 'cover' }}
           />
         ),
       }
