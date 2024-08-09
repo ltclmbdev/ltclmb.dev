@@ -25,17 +25,9 @@ export const postType = defineType({
     }),
     defineField({
       name: 'mainImage',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative text',
-        },
-      ],
+      title: 'Main image',
+      type: 'cloudinary.asset',
+      description: 'This image will be used for the main image of the post',
     }),
     defineField({
       name: 'categories',

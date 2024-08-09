@@ -80,6 +80,48 @@ const config = {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
+      typography: (theme: any) => ({
+        DEFAULT: {
+          css: {
+            color: theme('colors.foreground'),
+            a: {
+              color: theme('colors.primary.DEFAULT'),
+            },
+            'code::before': {
+              content: '""',
+            },
+            'code::after': {
+              content: '""',
+            },
+            code: {
+              backgroundColor: theme('colors.muted.DEFAULT'),
+              color: theme('colors.foreground'),
+              padding: '0.25rem',
+              borderRadius: '0.25rem',
+              whiteSpace: 'nowrap',
+            },
+            'pre code': {
+              whiteSpace: 'pre-wrap',
+            },
+            pre: {
+              border: `1px solid ${theme('colors.border')}`,
+            },
+            img: {
+              width: '100%',
+            },
+          },
+        },
+        dark: {
+          css: {
+            code: {
+              color: theme('colors.red.500'), // Red color for code in dark mode
+            },
+            strong: {
+              color: theme('colors.foreground'),
+            },
+          },
+        },
+      }),
     },
   },
   plugins: [
@@ -93,6 +135,7 @@ const config = {
         },
       })
     }),
+    require('@tailwindcss/typography'),
     require('tailwindcss-animate'),
   ],
 } satisfies Config
