@@ -1,8 +1,5 @@
 import React from 'react'
-import { client } from '@/sanity/lib/client'
-import Image from 'next/image'
-import MdxContent from '@/components/mdx-content'
-import { getAllPosts, getPostBySlug, type Post } from '@/lib/posts'
+import { getAllPosts, getPostBySlug } from '@/lib/posts'
 import PostTemplate from '@/templates/post-template'
 
 export default async function PostPage({

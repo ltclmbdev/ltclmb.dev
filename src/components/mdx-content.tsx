@@ -1,8 +1,8 @@
 import * as React from 'react'
-import Image from 'next/image'
-import { compileMDX } from 'next-mdx-remote/rsc'
-import { MDXRemoteProps } from 'next-mdx-remote/rsc'
+import { compileMDX, type MDXRemoteProps } from 'next-mdx-remote/rsc'
+
 import { getHighlighter, highlightCode } from '@/utils/code-highlight'
+import ImageWithBlur from '@/components/image-with-blur'
 
 const CodeComponent: React.FC<
   React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>
@@ -32,33 +32,10 @@ const CodeComponent: React.FC<
   return <div dangerouslySetInnerHTML={{ __html: highlightedCode }} />
 }
 
-const ImageComponent: React.FC<
-  React.ImgHTMLAttributes<HTMLImageElement>
-> = props => {
-  const { src, alt, width, height, ...rest } = props
-
-  if (!src) {
-    return null
-  }
-
-  return (
-    <span className="rounded-lg overflow-hidden border border-muted block not-prose my-10">
-      <Image
-        src={src}
-        alt={alt || ''}
-        width={Number(width) || 600}
-        height={Number(height) || 400}
-        {...rest}
-        className="w-full"
-      />
-    </span>
-  )
-}
-
 const components: MDXRemoteProps['components'] = {
   code: CodeComponent,
   pre: ({ children }) => children,
-  img: ImageComponent,
+  ImageWithBlur,
 }
 
 interface MdxContentProps {

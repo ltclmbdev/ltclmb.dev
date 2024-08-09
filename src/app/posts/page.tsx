@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
+import ImageWithBlur from '@/components/image-with-blur'
 import { isEmpty } from 'lodash'
 import { getAllPosts, type Post } from '@/lib/posts'
 import { formatDate } from '@/utils/format-date'
@@ -36,12 +36,13 @@ const RecentPostPreview: React.FC<{ post: Post }> = ({ post }) => (
           <div className="hidden lg:block w-1/2">
             {post.mainImage && (
               <div className="rounded-lg overflow-hidden">
-                <Image
+                <ImageWithBlur
                   src={post.mainImage.secure_url}
                   alt={post.title}
-                  width={300}
-                  height={200}
-                  className="w-full"
+                  width={605}
+                  height={392}
+                  priority
+                  className="border-none"
                 />
               </div>
             )}
@@ -53,15 +54,15 @@ const RecentPostPreview: React.FC<{ post: Post }> = ({ post }) => (
 )
 
 const PostPreview: React.FC<{ post: Post }> = ({ post }) => (
-  <Card className="shadow-2xl shadow-gray-500/20 overflow-hidden dark:shadow-none">
+  <Card className="shadow-2xl shadow-gray-500/20 overflow-hidden dark:shadow-none flex">
     <Link
       href={`/posts/${post.slug.current}`}
-      className="bg-slate-100 duration-150 dark:bg-[#31363F] hover:bg-white hover:dark:bg-white/25 block"
+      className="bg-slate-100 duration-150 dark:bg-[#31363F] hover:bg-white hover:dark:bg-white/25 flex flex-col w-full"
     >
       <CardHeader className="pb-3">
         <CardTitle>{post.title}</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="grow">
         <p className="text-muted-foreground">{formatDate(post.publishedAt)}</p>
         <p className="mt-4 xl:mt-6 line-clamp-6 md:line-clamp-3">
           {post.description}

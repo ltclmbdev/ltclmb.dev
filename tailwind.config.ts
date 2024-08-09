@@ -118,9 +118,9 @@ const config = {
         },
         dark: {
           css: {
-            code: {
-              color: theme('colors.red.500'), // Red color for code in dark mode
-            },
+            // code: {
+            //   color: theme('colors.red.500'),
+            // },
             strong: {
               color: theme('colors.foreground'),
             },

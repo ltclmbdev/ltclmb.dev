@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import ImageWithBlur from '@/components/image-with-blur'
 import Link from 'next/link'
 import MdxContent from '@/components/mdx-content'
 import { type Post } from '@/lib/posts'
@@ -23,12 +24,12 @@ const PostTemplate: React.FC<{ post: Post }> = async ({ post }) => {
       </p>
       {post.mainImage && (
         <div className="lg:-mx-10 xl:-mx-14 2xl:-mx-16 my-6 sm:my-8 lg:my-10">
-          <Image
+          <ImageWithBlur
             src={post.mainImage.secure_url}
             alt={post.title}
-            width={1079}
-            height={700}
-            className="mb-8 rounded-lg"
+            width={878}
+            height={570}
+            className="border-none"
           />
         </div>
       )}
