@@ -23,6 +23,10 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['var(--font-geist-sans)'],
+        mono: ['var(--font-geist-mono)'],
+      },
       screens: {
         '2xl': '1440px',
       },
@@ -83,6 +87,7 @@ const config = {
       typography: (theme: any) => ({
         DEFAULT: {
           css: {
+            '--tw-prose-headings': theme('colors.foreground'),
             color: theme('colors.foreground'),
             a: {
               color: theme('colors.primary.DEFAULT'),
