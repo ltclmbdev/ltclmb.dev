@@ -28,7 +28,7 @@ const ImageWithBlur: React.FC<ImageProps> = async props => {
       height={height}
       placeholder="blur"
       blurDataURL={blurDataURL}
-      className={cn('border border-muted rounded-lg w-full', className)}
+      className={cn('border border-muted rounded-lg', className)}
       {...rest}
     />
   )
