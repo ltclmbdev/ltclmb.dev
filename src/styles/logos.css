@@ -1,0 +1,185 @@
+/* Logos */
+
+/* eggheadio */
+.card-eggheadio:hover {
+  .egh-logo-text {
+    fill: #000;
+  }
+
+  .egh-logo-mask,
+  .egh-logo-outer-shape {
+    fill: #fff;
+  }
+
+  .egh-logo-inner-shape {
+    fill: #fcfbfa;
+  }
+
+  .egh-logo-details-dark {
+    fill: #252526;
+  }
+
+  .egh-logo-details-light {
+    fill: #e0e0e0;
+  }
+
+  .egh-logo-details-medium {
+    fill: #56555c;
+  }
+}
+
+.dark .card-eggheadio:hover {
+  .egh-logo-text {
+    fill: #fff;
+  }
+}
+
+/* EpicWeb */
+.card-epicweb:hover {
+  .ew-logo-text,
+  .ew-logo-triangle {
+    fill: #333753;
+  }
+
+  .ew-logo-gradient-start {
+    stop-color: #4f75ff;
+  }
+
+  .ew-logo-gradient-end {
+    stop-color: #30afff;
+  }
+}
+
+/* .card-epicweb .ew-logo-main {
+  opacity: 0.9;
+} */
+
+.dark {
+  .card-epicweb:hover {
+    .ew-logo-text,
+    .ew-logo-triangle {
+      fill: #fff;
+    }
+
+    .ew-gradient-logo-start {
+      stop-color: #4f75ff;
+    }
+
+    .ew-logo-gradient-end {
+      stop-color: #30afff;
+    }
+  }
+}
+
+/* EpicReact */
+.card-epicreact:hover {
+  .er-logo-atom {
+    stroke: #225feb;
+  }
+
+  .er-logo-text {
+    fill: #212732;
+  }
+
+  .er-logo-text-secondary {
+    fill: #212732;
+    fill-opacity: 0.85;
+  }
+
+  .er-logo-atom {
+    stroke: #4f75ff;
+  }
+
+  .er-logo-text,
+  .er-logo-text-secondary {
+    fill: #000;
+  }
+}
+
+.dark {
+  .card-epicreact:hover {
+    .er-logo-atom {
+      stroke: #81a7ff;
+    }
+    .er-logo-text,
+    .er-logo-text-secondary {
+      fill: #fff;
+    }
+
+    .er-logo-text-secondary {
+      fill-opacity: 0.85;
+    }
+    .er-logo-atom {
+      stroke: #a0c2ff;
+    }
+  }
+}
+
+/* TJS */
+.tjs-logo-gradient-start {
+  stop-color: #cccccc;
+}
+
+.tjs-logo-gradient-end {
+  stop-color: #a0a0a0;
+}
+.card-tjs:hover {
+  .tjs-logo-text,
+  .tjs-logo-text-secondary {
+    fill: #2b2b32;
+  }
+
+  .tjs-logo-trophy-highlight {
+    fill: #fff;
+  }
+
+  .tjs-logo-trophy {
+    fill: #ffb856;
+  }
+
+  .tjs-logo-gradient-start {
+    stop-color: #ffd68a;
+  }
+
+  .tjs-logo-gradient-end {
+    stop-color: #ffc26a;
+  }
+}
+
+.dark {
+  .tjs-logo-gradient-start {
+    stop-color: #b0b0b0;
+  }
+
+  .tjs-logo-gradient-end {
+    stop-color: #a0a0a0;
+  }
+
+  .card-tjs:hover {
+    .tjs-logo-text,
+    .tjs-logo-text-secondary {
+      fill: #fff;
+    }
+  }
+}
+
+/* ProTailwind */
+.card-protailwind:hover {
+  .ptw-logo-pro {
+    fill: #ff6090;
+  }
+  .ptw-logo-text {
+    fill: #000;
+  }
+}
+
+.dark .card-protailwind:hover {
+  .ptw-logo-text {
+    fill: #fff;
+  }
+}
+
+/* common */
+[class*='-logo-'] {
+  @apply duration-300;
+}

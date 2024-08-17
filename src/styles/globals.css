@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import './logos.css';
+
 @layer base {
   :root {
     --logo-fill: #000;
@@ -71,6 +73,17 @@
   }
   body {
     @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer components {
+  .group:not(:hover) .egghead-logo .logo-path {
+    filter: grayscale(100%);
+    transition: fill 0.5s ease;
+  }
+
+  .egghead-logo .logo-path {
+    transition: fill 0.5s ease;
   }
 }
 
