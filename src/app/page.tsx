@@ -1,12 +1,5 @@
 import Image from 'next/image'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { Card } from '@/components/ui/card'
 import LogoEggheadio from '@/components/logos/logo-eggheadio'
 import LogoEpicWeb from '@/components/logos/logo-epicweb'
 import LogoEpicReact from '@/components/logos/logo-epicreact'
@@ -15,10 +8,10 @@ import LogoProTailwind from '@/components/logos/logo-protailwind'
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center p-24 w-full">
-      <div className="w-full flex flex-col items-center max-w-3xl">
-        <div className="flex flex-col md:flex-row items-center gap-8 w-full">
-          <div className="shrink-0 w-40 h-40 rounded-full overflow-hidden">
+    <div className="container pb-40 pt-8 md:pt-12">
+      <div className="w-full flex flex-col items-center max-w-3xl mx-auto">
+        <div className="flex flex-col sm:flex-row items-center gap-6 lg:gap-8 w-full">
+          <div className="shrink-0 w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden">
             <Image
               src="/me.jpg"
               alt="Yevhen Nahalskyi"
@@ -26,17 +19,17 @@ export default function Home() {
               height={160}
             />
           </div>
-          <div className="space-y-4">
-            <h3 className="text-4xl">Hey!</h3>
-            <p className="text-2xl">
+          <div className="lg:space-y-4 space-y-3 text-center sm:text-left text-balance">
+            <h3 className="text-3xl lg:text-4xl">Hey!</h3>
+            <p className="text-xl lg:text-2xl">
               I’m Yevhen Nahalskyi and I’m front-end developer
             </p>
           </div>
         </div>
-        <h2 className="grayscale text-xl mt-20 w-full">
+        <h2 className="grayscale text-lg font-semibold md:text-xl mt-16 lg:mt-20 w-full">
           Projects I&apos;ve collaborated on:
         </h2>
-        <div className="mt-8 w-full grid grid-cols-2 gap-4">
+        <div className="mt-4 md:mt-8 w-full grid sm:grid-cols-2 gap-4">
           <Card className="aspect-video relative shadow-none card-eggheadio dark:bg-zinc-900 dark:border-zinc-600 hover:dark:bg-zinc-800 duration-300 bg-zinc-50 hover:bg-zinc-100">
             <a
               href="https://egghead.io/"
@@ -89,6 +82,6 @@ export default function Home() {
           </Card>
         </div>
       </div>
-    </main>
+    </div>
   )
 }

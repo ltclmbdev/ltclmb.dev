@@ -26,7 +26,7 @@ export default function RootLayout({
         <Providers>
           <div className="flex flex-col min-h-dvh">
             <Navigation />
-            <div className="grow flex">{children}</div>
+            <main className="grow flex">{children}</main>
           </div>
         </Providers>
       </body>
