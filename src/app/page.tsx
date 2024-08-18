@@ -5,31 +5,37 @@ import LogoEpicWeb from '@/components/logos/logo-epicweb'
 import LogoEpicReact from '@/components/logos/logo-epicreact'
 import LogoTjs from '@/components/logos/logo-tjs'
 import LogoProTailwind from '@/components/logos/logo-protailwind'
+import FindMeOn from '@/components/find-me-on'
 
 export default function Home() {
   return (
     <div className="container pb-40 pt-8 md:pt-12">
       <div className="w-full flex flex-col items-center max-w-3xl mx-auto">
-        <div className="flex flex-col sm:flex-row items-center gap-6 lg:gap-8 w-full">
-          <div className="shrink-0 w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden">
+        <div className="flex items-center gap-4 md:gap-6 lg:gap-8 w-full">
+          <div className="shrink-0 w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden">
             <Image
               src="/me.jpg"
               alt="Yevhen Nahalskyi"
               width={160}
               height={160}
+              priority
             />
           </div>
-          <div className="lg:space-y-4 space-y-3 text-center sm:text-left text-balance">
-            <h3 className="text-3xl lg:text-4xl">Hey!</h3>
-            <p className="text-xl lg:text-2xl">
+          <div className="space-y-1 md:space-y-3 lg:space-y-4 text-balance">
+            <h3 className="text-xl md:text-2xl lg:text-3xl">Hey!</h3>
+            <p className="md:text-lg lg:text-xl">
               I’m Yevhen Nahalskyi and I’m front-end developer
             </p>
           </div>
         </div>
-        <h2 className="grayscale text-lg font-semibold md:text-xl mt-16 lg:mt-20 w-full">
+        <h3 className="grayscale font-semibold md:text-lg mt-8 md:mt-16 lg:mt-20 w-full">
+          You can find me or get in touch on:
+        </h3>
+        <FindMeOn className="mt-3 md:mt-4" />
+        <h3 className="grayscale font-semibold md:text-lg mt-8 md:mt-16 lg:mt-20 w-full">
           Projects I&apos;ve collaborated on:
-        </h2>
-        <div className="mt-4 md:mt-8 w-full grid sm:grid-cols-2 gap-4">
+        </h3>
+        <div className="mt-3 md:mt-4 w-full grid sm:grid-cols-2 gap-4">
           <Card className="aspect-video relative shadow-none card-eggheadio dark:bg-zinc-900 dark:border-zinc-600 hover:dark:bg-zinc-800 duration-300 bg-zinc-50 hover:bg-zinc-100">
             <a
               href="https://egghead.io/"
