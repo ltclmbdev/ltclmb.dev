@@ -42,7 +42,7 @@ export default function Home() {
           </Card>
           <Card className="aspect-video relative shadow-none card-epicweb dark:bg-zinc-900 dark:border-zinc-600 hover:dark:bg-zinc-800 duration-300 bg-zinc-50 hover:bg-zinc-100">
             <a
-              href="https://egghead.io/"
+              href="https://www.epicweb.dev/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-6 flex justify-center items-center absolute inset-0 dark:text-white text-black"
@@ -52,7 +52,7 @@ export default function Home() {
           </Card>
           <Card className="aspect-video relative shadow-none card-epicreact dark:bg-zinc-900 dark:border-zinc-600 hover:dark:bg-zinc-800 duration-300 bg-zinc-50 hover:bg-zinc-100">
             <a
-              href="https://egghead.io/"
+              href="https://www.epicreact.dev/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-6 flex justify-center items-center absolute inset-0 dark:text-white text-black"
@@ -62,7 +62,7 @@ export default function Home() {
           </Card>
           <Card className="aspect-video relative shadow-none card-tjs dark:bg-zinc-900 dark:border-zinc-600 hover:dark:bg-zinc-800 duration-300 bg-zinc-50 hover:bg-zinc-100">
             <a
-              href="https://egghead.io/"
+              href="https://www.testingjavascript.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-6 flex justify-center items-center absolute inset-0 dark:text-white text-black"
@@ -72,7 +72,7 @@ export default function Home() {
           </Card>
           <Card className="aspect-video relative shadow-none card-protailwind dark:bg-zinc-900 dark:border-zinc-600 hover:dark:bg-zinc-800 duration-300 bg-zinc-50 hover:bg-zinc-100">
             <a
-              href="https://egghead.io/"
+              href="https://www.protailwind.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-6 flex justify-center items-center absolute inset-0 dark:text-white text-black"
