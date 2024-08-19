@@ -12,7 +12,7 @@ export default function Home() {
     <div className="container pb-40 pt-8 md:pt-12">
       <div className="w-full flex flex-col items-center max-w-3xl mx-auto">
         <div className="flex items-center gap-4 md:gap-6 lg:gap-8 w-full">
-          <div className="shrink-0 w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden">
+          <div className="shrink-0 w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-4 border-foreground">
             <Image
               src="/me.jpg"
               alt="Yevhen Nahalskyi"
@@ -21,18 +21,18 @@ export default function Home() {
               priority
             />
           </div>
-          <div className="space-y-1 md:space-y-3 lg:space-y-4 text-balance">
-            <h3 className="text-xl md:text-2xl lg:text-3xl">Hey!</h3>
-            <p className="md:text-lg lg:text-xl">
+          <div className="space-y-1 md:space-y-2 text-balance">
+            <h3 className="text-xl md:text-2xl">Hey!</h3>
+            <p className="md:text-lg">
               I’m Yevhen Nahalskyi and I’m front-end developer
             </p>
           </div>
         </div>
-        <h3 className="grayscale font-semibold md:text-lg mt-8 md:mt-16 lg:mt-20 w-full">
+        <h3 className="grayscale font-semibold mt-8 md:mt-16 lg:mt-20 w-full">
           You can find me or get in touch on:
         </h3>
         <FindMeOn className="mt-3 md:mt-4" />
-        <h3 className="grayscale font-semibold md:text-lg mt-8 md:mt-16 lg:mt-20 w-full">
+        <h3 className="grayscale font-semibold mt-8 md:mt-16 lg:mt-20 w-full">
           Projects I&apos;ve collaborated on:
         </h3>
         <div className="mt-3 md:mt-4 w-full grid sm:grid-cols-2 gap-4">

@@ -11,6 +11,7 @@ export const Navigation = () => {
           <Logo />
         </Link>
         <div className="flex items-center space-x-4">
+          <Link href="/about">About</Link>
           <Link href="/posts">Posts</Link>
           <ThemeToggle />
         </div>

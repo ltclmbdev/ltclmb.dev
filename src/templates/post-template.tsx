@@ -33,7 +33,7 @@ const PostTemplate: React.FC<{ post: Post }> = async ({ post }) => {
           />
         </div>
       )}
-      <div className="prose prose-lg max-w-none dark:prose-dark w-full">
+      <div className="prose prose-xl max-w-none dark:prose-dark w-full">
         <MdxContent>{post.body}</MdxContent>
       </div>
     </article>
