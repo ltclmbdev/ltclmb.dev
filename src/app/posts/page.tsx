@@ -7,7 +7,6 @@ import { formatDate } from '@/utils/format-date'
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,

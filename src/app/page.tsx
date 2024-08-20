@@ -23,11 +23,15 @@ export default function Home() {
           </div>
           <div className="space-y-1 md:space-y-2 text-balance">
             <h3 className="text-xl md:text-2xl">Hey!</h3>
-            <p className="md:text-lg">
+            <h1 className="md:text-lg">
               I’m Yevhen Nahalskyi and I’m front-end developer
-            </p>
+            </h1>
           </div>
         </div>
+        <p className="mt-8 md:text-lg md:mt-16">
+          This is my personal blog where I introduce myself and occasionally
+          share my thoughts on front-end development.
+        </p>
         <h3 className="grayscale font-semibold mt-8 md:mt-16 lg:mt-20 w-full">
           You can find me or get in touch on:
         </h3>

@@ -2,6 +2,7 @@ import { client } from '@/sanity/lib/client'
 
 export type Post = {
   _id: string
+  _updatedAt: string
   publishedAt: string
   title: string
   slug: {
@@ -22,6 +23,7 @@ export const getAllPosts = async (): Promise<Post[]> => {
   return client.fetch(
     `*[_type == "post"] | order(publishedAt desc) {
       _id,
+      _updatedAt,
       publishedAt,
       title,
       slug,

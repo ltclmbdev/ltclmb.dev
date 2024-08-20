@@ -7,8 +7,11 @@ import Navigation from '@/components/app/navigation'
 import Providers from '@/providers/providers'
 
 export const metadata: Metadata = {
-  title: 'ltclmb.dev - front end dev',
+  title: 'Yevhen Nahalskyi - front end developer',
   description: "Yevhen Nahalskyi's personal site",
+  alternates: {
+    canonical: 'https://www.ltclmb.dev/',
+  },
 }
 
 export default function RootLayout({
