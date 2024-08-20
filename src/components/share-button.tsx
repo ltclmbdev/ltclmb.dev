@@ -16,7 +16,7 @@ const ShareButton: React.FC<ShareButtonProps> = ({ title, className }) => {
   const url = `${process.env.NEXT_PUBLIC_URL}${pathname}`
   const shareText = encodeURIComponent(`Check out this post: ${title}`)
   const shareUrl = encodeURIComponent(url)
-  const intentUrl = `https://platform.x.com/intent/post?text=${shareText}&url=${shareUrl}`
+  const intentUrl = `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`
 
   return (
     <Button asChild variant="outline" className={cn(className)}>
