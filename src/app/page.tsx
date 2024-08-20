@@ -14,7 +14,7 @@ export default function Home() {
         <div className="flex items-center gap-4 md:gap-6 lg:gap-8 w-full">
           <div className="shrink-0 w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-4 border-foreground">
             <Image
-              src="/me.jpg"
+              src="/images/me.jpg"
               alt="Yevhen Nahalskyi"
               width={160}
               height={160}

@@ -97,7 +97,7 @@ const FindMeOn: React.FC<{ className?: string }> = ({ className }) => {
       <Button
         variant="outline"
         className="dark:bg-zinc-900 dark:border-zinc-600 hover:dark:bg-zinc-800 duration-300 bg-zinc-50 hover:bg-zinc-100 space-x-1"
-        onClick={() => window.open('/cv-yevhen-nahalskyi.pdf', '_blank')}
+        onClick={() => window.open('/cv/cv-yevhen-nahalskyi.pdf', '_blank')}
       >
         <Icon name="Download" size="16" className="text-base" />
         <span>Download CV</span>

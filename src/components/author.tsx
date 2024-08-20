@@ -9,7 +9,7 @@ const Author: React.FC<{ className?: string }> = ({ className }) => {
     <div className={cn('flex items-center space-x-2 text-sm', className)}>
       <div className="shrink-0 overflow-hidden rounded-full">
         <Image
-          src="/me.jpg"
+          src="/images/me.jpg"
           alt={config.author || 'Yevhen Nahalskyi'}
           width={40}
           height={40}
