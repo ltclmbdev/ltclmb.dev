@@ -6,22 +6,22 @@ import { Icon } from '@/components/icons'
 import { Button } from './ui/button'
 import { cn } from '@/utils/cn'
 
-interface TweetButtonProps {
+interface ShareButtonProps {
   title: string
   className?: string
 }
 
-const TweetButton: React.FC<TweetButtonProps> = ({ title, className }) => {
+const ShareButton: React.FC<ShareButtonProps> = ({ title, className }) => {
   const pathname = usePathname()
   const url = `${process.env.NEXT_PUBLIC_URL}${pathname}`
-  const tweetText = encodeURIComponent(`Check out this post: ${title}`)
-  const tweetUrl = encodeURIComponent(url)
-  const twitterShareUrl = `https://twitter.com/intent/tweet?text=${tweetText}&url=${tweetUrl}`
+  const shareText = encodeURIComponent(`Check out this post: ${title}`)
+  const shareUrl = encodeURIComponent(url)
+  const intentUrl = `https://platform.x.com/intent/post?text=${shareText}&url=${shareUrl}`
 
   return (
     <Button asChild variant="outline" className={cn(className)}>
       <a
-        href={twitterShareUrl}
+        href={intentUrl}
         target="_blank"
         rel="noopener noreferrer"
         className="space-x-1"
@@ -33,4 +33,4 @@ const TweetButton: React.FC<TweetButtonProps> = ({ title, className }) => {
   )
 }
 
-export default TweetButton
+export default ShareButton
