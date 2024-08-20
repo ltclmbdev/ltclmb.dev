@@ -1,10 +1,10 @@
-import Image from 'next/image'
 import ImageWithBlur from '@/components/image-with-blur'
 import Link from 'next/link'
 import MdxContent from '@/components/mdx-content'
 import { type Post } from '@/lib/posts'
 import { formatDate } from '@/utils/format-date'
 import { Icon } from '@/components/icons'
+import TweetButton from '@/components/tweet-button'
 
 const PostTemplate: React.FC<{ post: Post }> = async ({ post }) => {
   return (
@@ -36,6 +36,7 @@ const PostTemplate: React.FC<{ post: Post }> = async ({ post }) => {
       <div className="prose prose-xl max-w-none dark:prose-dark w-full">
         <MdxContent>{post.body}</MdxContent>
       </div>
+      <TweetButton title={post.title} className="mt-20" />
     </article>
   )
 }
