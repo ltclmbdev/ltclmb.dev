@@ -17,7 +17,7 @@ const ImageWithBlur: React.FC<ImageProps> = async props => {
     const { base64 } = await getPlaiceholder(Buffer.from(buffer))
     blurDataURL = base64
   } catch (error) {
-    console.error('Error generating placeholder:', error)
+    console.error('Error generating image placeholder:', error)
   }
 
   return (
