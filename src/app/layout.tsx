@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
-import GoogleAnalytics from '@/components/google-analytics'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import '@/styles/globals.css'
 
 import Navigation from '@/components/app/navigation'
@@ -33,8 +33,8 @@ export default function RootLayout({
             <main className="grow flex">{children}</main>
           </div>
         </Providers>
-        <GoogleAnalytics GA_MEASUREMENT_ID="G-HCETR5MWJS" />
       </body>
+      <GoogleAnalytics gaId="G-HCETR5MWJS" />
     </html>
   )
 }

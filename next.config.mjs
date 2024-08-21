@@ -7,8 +7,19 @@ const nextConfig = {
         headers: [
           {
             key: 'Content-Security-Policy',
-            value:
-              "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com",
+            value: `
+              default-src 'self';
+              script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.googletagmanager.com https://*.google-analytics.com;
+              style-src 'self' 'unsafe-inline';
+              img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com;
+              connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com;
+              font-src 'self';
+              object-src 'none';
+              media-src 'self';
+              frame-src 'self';
+            `
+              .replace(/\s{2,}/g, ' ')
+              .trim(),
           },
         ],
       },
