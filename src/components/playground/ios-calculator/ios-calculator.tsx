@@ -172,14 +172,14 @@ function calculatorReducer(state: State, action: Action): State {
     case 'PERFORM_OPERATION':
       if (state.display === 'Error') return initialState
       if (state.operator && !state.waitingForOperand) {
-        let result: number | string
+        let result: number
         if (isHighPriorityOperation(state.operator)) {
           result = calculate(
             state.previousOperand!,
             state.currentOperand!,
             state.operator,
           )
-          if (result === 'Error') {
+          if (Number.isNaN(result)) {
             return {
               ...state,
               display: 'Error',
@@ -205,7 +205,7 @@ function calculatorReducer(state: State, action: Action): State {
                 result,
                 state.pendingLowPriorityOperation.operator,
               )
-              if (result === 'Error') {
+              if (Number.isNaN(result)) {
                 return {
                   ...state,
                   display: 'Error',
@@ -245,7 +245,7 @@ function calculatorReducer(state: State, action: Action): State {
               state.currentOperand!,
               state.operator,
             )
-            if (result === 'Error') {
+            if (Number.isNaN(result)) {
               return {
                 ...state,
                 display: 'Error',
@@ -288,7 +288,7 @@ function calculatorReducer(state: State, action: Action): State {
           state.currentOperand,
           state.operator,
         )
-        if (result === 'Error') {
+        if (Number.isNaN(result)) {
           return {
             ...state,
             display: 'Error',
@@ -304,7 +304,7 @@ function calculatorReducer(state: State, action: Action): State {
             result,
             state.pendingLowPriorityOperation.operator,
           )
-          if (result === 'Error') {
+          if (Number.isNaN(result)) {
             return {
               ...state,
               display: 'Error',
@@ -334,7 +334,7 @@ function calculatorReducer(state: State, action: Action): State {
           state.lastOperation.operand,
           state.lastOperation.operator,
         )
-        if (result === 'Error') {
+        if (Number.isNaN(result)) {
           return {
             ...state,
             display: 'Error',
@@ -358,7 +358,7 @@ function calculatorReducer(state: State, action: Action): State {
   }
 }
 
-function calculate(a: number, b: number, operator: string): number | string {
+function calculate(a: number, b: number, operator: string): number {
   switch (operator) {
     case '+':
       return a + b
@@ -367,7 +367,7 @@ function calculate(a: number, b: number, operator: string): number | string {
     case '×':
       return a * b
     case '÷':
-      return b !== 0 ? a / b : 'Error'
+      return b !== 0 ? a / b : NaN
     default:
       return b
   }
