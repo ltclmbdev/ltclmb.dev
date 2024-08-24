@@ -1,8 +1,8 @@
 @font-face {
   font-family: 'SFProDisplayLight';
   src:
-    url('subset-SFProDisplay-Light.woff2') format('woff2'),
-    url('subset-SFProDisplay-Light.woff') format('woff');
+    url('assets/fonts/subset-SFProDisplay-Light.woff2') format('woff2'),
+    url('assets/fonts/subset-SFProDisplay-Light.woff') format('woff');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -11,8 +11,8 @@
 @font-face {
   font-family: 'SFProDisplay';
   src:
-    url('subset-SFProDisplay-Regular.woff2') format('woff2'),
-    url('subset-SFProDisplay-Regular.woff') format('woff');
+    url('assets/fonts/subset-SFProDisplay-Regular.woff2') format('woff2'),
+    url('assets/fonts/subset-SFProDisplay-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -21,8 +21,8 @@
 @font-face {
   font-family: 'SFProTextSemibold';
   src:
-    url('subset-SFProText-Semibold.woff2') format('woff2'),
-    url('subset-SFProText-Semibold.woff') format('woff');
+    url('assets/fonts/subset-SFProText-Semibold.woff2') format('woff2'),
+    url('assets/fonts/subset-SFProText-Semibold.woff') format('woff');
   font-weight: 600;
   font-style: normal;
   font-display: swap;

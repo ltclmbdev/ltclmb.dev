@@ -4,6 +4,7 @@ import { cn } from '@/utils/cn'
 import { Icon } from '@/components/icons'
 import TimeDisplay from './time-display'
 import IphoneIcons from './iphone-icons'
+import iphoneFrameImg from './assets/images/iphone-15.png'
 
 import './stylesheet.css'
 
@@ -440,12 +441,7 @@ const IosCalculator: React.FC = () => {
 
   return (
     <div className="w-[286px] h-[586px] relative select-none">
-      <Image
-        src="/playground/ios-calculator/iphone-15.png"
-        alt="iphone 15"
-        width={661}
-        height={1355}
-      />
+      <Image src={iphoneFrameImg} alt="iphone 15" width={661} height={1355} />
       <div className="absolute w-full top-6 px-8 left-0 flex justify-between items-center">
         <TimeDisplay />
         <IphoneIcons />
