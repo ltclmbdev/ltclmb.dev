@@ -75,7 +75,7 @@ function formatNumber(num: number | string): string {
   if (decimalPart) {
     const trimmedDecimal = decimalPart.replace(/0+$/, '')
     return trimmedDecimal
-      ? `${formattedIntegerPart},${trimmedDecimal}`
+      ? `${formattedIntegerPart}${DECIMAL_SEPARATOR}${trimmedDecimal}`
       : formattedIntegerPart
   }
   return formattedIntegerPart
@@ -93,7 +93,7 @@ function countSignificantDigits(numStr: string): number {
 
 function calculatorReducer(state: State, action: Action): State {
   switch (action.type) {
-    case 'INPUT_DIGIT':
+    case ActionType.INPUT_DIGIT:
       if (state.display === ERROR_MESSAGE) {
         return {
           ...initialState,
@@ -110,7 +110,7 @@ function calculatorReducer(state: State, action: Action): State {
         }
       } else {
         let newDisplay: string
-        if (state.display.includes(',')) {
+        if (state.display.includes(DECIMAL_SEPARATOR)) {
           newDisplay = state.display + action.payload
         } else {
           const currentNum = parseFloat(state.display.replace(/\./g, ''))
@@ -122,39 +122,42 @@ function calculatorReducer(state: State, action: Action): State {
           newDisplay = formatNumber(newNum)
         }
 
-        if (countSignificantDigits(newDisplay) > MAX_DISPLAY_DIGITS) {
+        if (
+          countSignificantDigits(newDisplay.replace('-', '')) >
+          MAX_DISPLAY_DIGITS
+        ) {
           return state // Ignore input if it would exceed MAX_DISPLAY_DIGITS significant digits
         }
         return {
           ...state,
           display: newDisplay,
           currentOperand: parseFloat(
-            newDisplay.replace(/\./g, '').replace(',', '.'),
+            newDisplay.replace(/\./g, '').replace(DECIMAL_SEPARATOR, '.'),
           ),
         }
       }
-    case 'INPUT_DECIMAL':
+    case ActionType.INPUT_DECIMAL:
       if (state.display === ERROR_MESSAGE) return initialState
       if (state.waitingForOperand) {
         return {
           ...state,
-          display: '0,',
+          display: `0${DECIMAL_SEPARATOR}`,
           currentOperand: 0,
           waitingForOperand: false,
         }
-      } else if (!state.display.includes(',')) {
+      } else if (!state.display.includes(DECIMAL_SEPARATOR)) {
         return {
           ...state,
-          display: state.display + ',',
+          display: state.display + DECIMAL_SEPARATOR,
         }
       }
       return state
-    case 'CLEAR_ALL':
+    case ActionType.CLEAR_ALL:
       return initialState
-    case 'INPUT_PERCENT':
+    case ActionType.INPUT_PERCENT:
       if (state.display === ERROR_MESSAGE) return initialState
       const currentValue = parseFloat(
-        state.display.replace(/\./g, '').replace(',', '.'),
+        state.display.replace(/\./g, '').replace(DECIMAL_SEPARATOR, '.'),
       )
       let percentValue: number
       if (state.previousOperand !== null && state.operator) {
@@ -168,15 +171,16 @@ function calculatorReducer(state: State, action: Action): State {
         currentOperand: percentValue,
         waitingForOperand: true,
       }
-    case 'TOGGLE_SIGN':
+    case ActionType.TOGGLE_SIGN:
       if (state.display === ERROR_MESSAGE) return initialState
       const currentNum = parseFloat(
-        state.display.replace(/\./g, '').replace(',', '.'),
+        state.display.replace(/\./g, '').replace(DECIMAL_SEPARATOR, '.'),
       )
       const toggledValue = -currentNum
       const newDisplay = formatNumber(toggledValue)
-      // Allow toggle sign for numbers up to 999999999
-      if (Math.abs(toggledValue) > 999999999) {
+      if (
+        countSignificantDigits(newDisplay.replace('-', '')) > MAX_DISPLAY_DIGITS
+      ) {
         return state
       }
       return {
@@ -184,7 +188,7 @@ function calculatorReducer(state: State, action: Action): State {
         display: newDisplay,
         currentOperand: toggledValue,
       }
-    case 'PERFORM_OPERATION':
+    case ActionType.PERFORM_OPERATION:
       if (state.display === ERROR_MESSAGE) return initialState
       if (state.operator && !state.waitingForOperand) {
         let result: number
@@ -284,14 +288,14 @@ function calculatorReducer(state: State, action: Action): State {
         return {
           ...state,
           previousOperand: parseFloat(
-            state.display.replace(/\./g, '').replace(',', '.'),
+            state.display.replace(/\./g, '').replace(DECIMAL_SEPARATOR, '.'),
           ),
           currentOperand: null,
           operator: action.payload,
           waitingForOperand: true,
         }
       }
-    case 'HANDLE_EQUALS':
+    case ActionType.HANDLE_EQUALS:
       if (state.display === ERROR_MESSAGE) return initialState
       if (
         state.operator &&
@@ -345,7 +349,9 @@ function calculatorReducer(state: State, action: Action): State {
         }
       } else if (state.lastOperation) {
         const result = calculate(
-          parseFloat(state.display.replace(/\./g, '').replace(',', '.')),
+          parseFloat(
+            state.display.replace(/\./g, '').replace(DECIMAL_SEPARATOR, '.'),
+          ),
           state.lastOperation.operand,
           state.lastOperation.operator,
         )
