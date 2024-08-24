@@ -5,12 +5,15 @@ import { Icon } from '@/components/icons'
 import TimeDisplay from './time-display'
 import IphoneIcons from './iphone-icons'
 import iphoneFrameImg from './assets/images/iphone-15.png'
+import { getFontSizeClass } from './utils/get-font-size-class'
+import { formatNumber } from './utils/format-number'
+import {
+  MAX_DISPLAY_DIGITS,
+  DECIMAL_SEPARATOR,
+  ERROR_MESSAGE,
+} from './utils/constants'
 
 import './stylesheet.css'
-
-const MAX_DISPLAY_DIGITS = 9
-const DECIMAL_SEPARATOR = ','
-const ERROR_MESSAGE = 'Error'
 
 enum ActionType {
   INPUT_DIGIT = 'INPUT_DIGIT',
@@ -49,37 +52,6 @@ const initialState: State = {
   waitingForOperand: false,
   lastOperation: null,
   pendingLowPriorityOperation: null,
-}
-
-function getFontSizeClass(display: string): string {
-  const digitCount = display.replace(/[,.-]/g, '').length
-  const isNegative = display.startsWith('-')
-
-  if (digitCount <= 4) return 'text-[64px]'
-  if (digitCount === 5) return isNegative ? 'text-[61px]' : 'text-[64px]'
-  if (digitCount === 6) return isNegative ? 'text-[53px]' : 'text-[60px]'
-  if (digitCount === 7) return isNegative ? 'text-[45px]' : 'text-[50px]'
-  if (digitCount === 8) return isNegative ? 'text-[40px]' : 'text-[44px]'
-  if (digitCount === 9) return isNegative ? 'text-[36px]' : 'text-[40px]'
-
-  return 'text-[40px]'
-}
-
-function formatNumber(num: number | string): string {
-  if (typeof num === 'string') return num
-  // Round to 8 decimal places to avoid floating point precision issues
-  const rounded = Number(num.toFixed(MAX_DISPLAY_DIGITS - 1))
-  const [integerPart, decimalPart] = rounded.toString().split('.')
-
-  const formattedIntegerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-
-  if (decimalPart) {
-    const trimmedDecimal = decimalPart.replace(/0+$/, '')
-    return trimmedDecimal
-      ? `${formattedIntegerPart}${DECIMAL_SEPARATOR}${trimmedDecimal}`
-      : formattedIntegerPart
-  }
-  return formattedIntegerPart
 }
 
 function isHighPriorityOperation(op: string): boolean {
