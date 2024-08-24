@@ -7,6 +7,20 @@ import IphoneIcons from './iphone-icons'
 
 import './stylesheet.css'
 
+const MAX_DISPLAY_DIGITS = 9
+const DECIMAL_SEPARATOR = ','
+const ERROR_MESSAGE = 'Error'
+
+enum ActionType {
+  INPUT_DIGIT = 'INPUT_DIGIT',
+  INPUT_DECIMAL = 'INPUT_DECIMAL',
+  CLEAR_ALL = 'CLEAR_ALL',
+  INPUT_PERCENT = 'INPUT_PERCENT',
+  TOGGLE_SIGN = 'TOGGLE_SIGN',
+  PERFORM_OPERATION = 'PERFORM_OPERATION',
+  HANDLE_EQUALS = 'HANDLE_EQUALS',
+}
+
 type State = {
   display: string
   previousOperand: number | null
@@ -18,13 +32,13 @@ type State = {
 }
 
 type Action =
-  | { type: 'INPUT_DIGIT'; payload: string }
-  | { type: 'INPUT_DECIMAL' }
-  | { type: 'CLEAR_ALL' }
-  | { type: 'INPUT_PERCENT' }
-  | { type: 'TOGGLE_SIGN' }
-  | { type: 'PERFORM_OPERATION'; payload: string }
-  | { type: 'HANDLE_EQUALS' }
+  | { type: ActionType.INPUT_DIGIT; payload: string }
+  | { type: ActionType.INPUT_DECIMAL }
+  | { type: ActionType.CLEAR_ALL }
+  | { type: ActionType.INPUT_PERCENT }
+  | { type: ActionType.TOGGLE_SIGN }
+  | { type: ActionType.PERFORM_OPERATION; payload: string }
+  | { type: ActionType.HANDLE_EQUALS }
 
 const initialState: State = {
   display: '0',
@@ -53,7 +67,7 @@ function getFontSizeClass(display: string): string {
 function formatNumber(num: number | string): string {
   if (typeof num === 'string') return num
   // Round to 8 decimal places to avoid floating point precision issues
-  const rounded = Number(num.toFixed(8))
+  const rounded = Number(num.toFixed(MAX_DISPLAY_DIGITS - 1))
   const [integerPart, decimalPart] = rounded.toString().split('.')
 
   const formattedIntegerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
@@ -80,7 +94,7 @@ function countSignificantDigits(numStr: string): number {
 function calculatorReducer(state: State, action: Action): State {
   switch (action.type) {
     case 'INPUT_DIGIT':
-      if (state.display === 'Error') {
+      if (state.display === ERROR_MESSAGE) {
         return {
           ...initialState,
           display: action.payload,
@@ -108,8 +122,8 @@ function calculatorReducer(state: State, action: Action): State {
           newDisplay = formatNumber(newNum)
         }
 
-        if (countSignificantDigits(newDisplay) > 9) {
-          return state // Ignore input if it would exceed 9 significant digits
+        if (countSignificantDigits(newDisplay) > MAX_DISPLAY_DIGITS) {
+          return state // Ignore input if it would exceed MAX_DISPLAY_DIGITS significant digits
         }
         return {
           ...state,
@@ -120,7 +134,7 @@ function calculatorReducer(state: State, action: Action): State {
         }
       }
     case 'INPUT_DECIMAL':
-      if (state.display === 'Error') return initialState
+      if (state.display === ERROR_MESSAGE) return initialState
       if (state.waitingForOperand) {
         return {
           ...state,
@@ -138,7 +152,7 @@ function calculatorReducer(state: State, action: Action): State {
     case 'CLEAR_ALL':
       return initialState
     case 'INPUT_PERCENT':
-      if (state.display === 'Error') return initialState
+      if (state.display === ERROR_MESSAGE) return initialState
       const currentValue = parseFloat(
         state.display.replace(/\./g, '').replace(',', '.'),
       )
@@ -155,7 +169,7 @@ function calculatorReducer(state: State, action: Action): State {
         waitingForOperand: true,
       }
     case 'TOGGLE_SIGN':
-      if (state.display === 'Error') return initialState
+      if (state.display === ERROR_MESSAGE) return initialState
       const currentNum = parseFloat(
         state.display.replace(/\./g, '').replace(',', '.'),
       )
@@ -171,7 +185,7 @@ function calculatorReducer(state: State, action: Action): State {
         currentOperand: toggledValue,
       }
     case 'PERFORM_OPERATION':
-      if (state.display === 'Error') return initialState
+      if (state.display === ERROR_MESSAGE) return initialState
       if (state.operator && !state.waitingForOperand) {
         let result: number
         if (isHighPriorityOperation(state.operator)) {
@@ -183,7 +197,7 @@ function calculatorReducer(state: State, action: Action): State {
           if (Number.isNaN(result)) {
             return {
               ...state,
-              display: 'Error',
+              display: ERROR_MESSAGE,
               previousOperand: null,
               currentOperand: null,
               operator: null,
@@ -209,7 +223,7 @@ function calculatorReducer(state: State, action: Action): State {
               if (Number.isNaN(result)) {
                 return {
                   ...state,
-                  display: 'Error',
+                  display: ERROR_MESSAGE,
                   previousOperand: null,
                   currentOperand: null,
                   operator: null,
@@ -249,7 +263,7 @@ function calculatorReducer(state: State, action: Action): State {
             if (Number.isNaN(result)) {
               return {
                 ...state,
-                display: 'Error',
+                display: ERROR_MESSAGE,
                 previousOperand: null,
                 currentOperand: null,
                 operator: null,
@@ -278,7 +292,7 @@ function calculatorReducer(state: State, action: Action): State {
         }
       }
     case 'HANDLE_EQUALS':
-      if (state.display === 'Error') return initialState
+      if (state.display === ERROR_MESSAGE) return initialState
       if (
         state.operator &&
         state.previousOperand !== null &&
@@ -292,7 +306,7 @@ function calculatorReducer(state: State, action: Action): State {
         if (Number.isNaN(result)) {
           return {
             ...state,
-            display: 'Error',
+            display: ERROR_MESSAGE,
             previousOperand: null,
             currentOperand: null,
             operator: null,
@@ -308,7 +322,7 @@ function calculatorReducer(state: State, action: Action): State {
           if (Number.isNaN(result)) {
             return {
               ...state,
-              display: 'Error',
+              display: ERROR_MESSAGE,
               previousOperand: null,
               currentOperand: null,
               operator: null,
@@ -338,7 +352,7 @@ function calculatorReducer(state: State, action: Action): State {
         if (Number.isNaN(result)) {
           return {
             ...state,
-            display: 'Error',
+            display: ERROR_MESSAGE,
             previousOperand: null,
             currentOperand: null,
             operator: null,
@@ -382,18 +396,21 @@ const IosCalculator: React.FC = () => {
     const key = event.key
 
     if (/^[0-9]$/.test(key)) {
-      dispatch({ type: 'INPUT_DIGIT', payload: key })
-    } else if (key === ',') {
-      dispatch({ type: 'INPUT_DECIMAL' })
+      dispatch({ type: ActionType.INPUT_DIGIT, payload: key })
+    } else if (key === DECIMAL_SEPARATOR) {
+      dispatch({ type: ActionType.INPUT_DECIMAL })
     } else if (key === '%') {
-      dispatch({ type: 'INPUT_PERCENT' })
+      dispatch({ type: ActionType.INPUT_PERCENT })
     } else if (key === 'Backspace') {
-      dispatch({ type: 'CLEAR_ALL' })
+      dispatch({ type: ActionType.CLEAR_ALL })
     } else if (key === 'Enter' || key === '=') {
-      dispatch({ type: 'HANDLE_EQUALS' })
+      dispatch({ type: ActionType.HANDLE_EQUALS })
     } else if (['+', '-', '*', '/'].includes(key)) {
       const operatorMap: { [key: string]: string } = { '*': '×', '/': '÷' }
-      dispatch({ type: 'PERFORM_OPERATION', payload: operatorMap[key] || key })
+      dispatch({
+        type: ActionType.PERFORM_OPERATION,
+        payload: operatorMap[key] || key,
+      })
     }
   }, [])
 
@@ -439,26 +456,26 @@ const IosCalculator: React.FC = () => {
           </div>
           <div className="grid grid-cols-4 gap-[10px]">
             <button
-              onClick={() => dispatch({ type: 'CLEAR_ALL' })}
+              onClick={() => dispatch({ type: ActionType.CLEAR_ALL })}
               className={functionButtonClass}
             >
               C
             </button>
             <button
-              onClick={() => dispatch({ type: 'TOGGLE_SIGN' })}
+              onClick={() => dispatch({ type: ActionType.TOGGLE_SIGN })}
               className={functionButtonClass}
             >
               <Icon name="PlusMinus" size="20" />
             </button>
             <button
-              onClick={() => dispatch({ type: 'INPUT_PERCENT' })}
+              onClick={() => dispatch({ type: ActionType.INPUT_PERCENT })}
               className={functionButtonClass}
             >
               %
             </button>
             <button
               onClick={() =>
-                dispatch({ type: 'PERFORM_OPERATION', payload: '÷' })
+                dispatch({ type: ActionType.PERFORM_OPERATION, payload: '÷' })
               }
               className={operatorButtonClass}
             >
@@ -469,7 +486,10 @@ const IosCalculator: React.FC = () => {
               <button
                 key={digit}
                 onClick={() =>
-                  dispatch({ type: 'INPUT_DIGIT', payload: digit.toString() })
+                  dispatch({
+                    type: ActionType.INPUT_DIGIT,
+                    payload: digit.toString(),
+                  })
                 }
                 className={numberButtonClass}
               >
@@ -478,7 +498,7 @@ const IosCalculator: React.FC = () => {
             ))}
             <button
               onClick={() =>
-                dispatch({ type: 'PERFORM_OPERATION', payload: '×' })
+                dispatch({ type: ActionType.PERFORM_OPERATION, payload: '×' })
               }
               className={operatorButtonClass}
             >
@@ -489,7 +509,10 @@ const IosCalculator: React.FC = () => {
               <button
                 key={digit}
                 onClick={() =>
-                  dispatch({ type: 'INPUT_DIGIT', payload: digit.toString() })
+                  dispatch({
+                    type: ActionType.INPUT_DIGIT,
+                    payload: digit.toString(),
+                  })
                 }
                 className={numberButtonClass}
               >
@@ -498,7 +521,7 @@ const IosCalculator: React.FC = () => {
             ))}
             <button
               onClick={() =>
-                dispatch({ type: 'PERFORM_OPERATION', payload: '-' })
+                dispatch({ type: ActionType.PERFORM_OPERATION, payload: '-' })
               }
               className={operatorButtonClass}
             >
@@ -509,7 +532,10 @@ const IosCalculator: React.FC = () => {
               <button
                 key={digit}
                 onClick={() =>
-                  dispatch({ type: 'INPUT_DIGIT', payload: digit.toString() })
+                  dispatch({
+                    type: ActionType.INPUT_DIGIT,
+                    payload: digit.toString(),
+                  })
                 }
                 className={numberButtonClass}
               >
@@ -518,7 +544,7 @@ const IosCalculator: React.FC = () => {
             ))}
             <button
               onClick={() =>
-                dispatch({ type: 'PERFORM_OPERATION', payload: '+' })
+                dispatch({ type: ActionType.PERFORM_OPERATION, payload: '+' })
               }
               className={operatorButtonClass}
             >
@@ -526,7 +552,9 @@ const IosCalculator: React.FC = () => {
             </button>
 
             <button
-              onClick={() => dispatch({ type: 'INPUT_DIGIT', payload: '0' })}
+              onClick={() =>
+                dispatch({ type: ActionType.INPUT_DIGIT, payload: '0' })
+              }
               className={cn(
                 numberButtonClass,
                 'col-span-2 w-auto pl-6 justify-start',
@@ -535,13 +563,13 @@ const IosCalculator: React.FC = () => {
               0
             </button>
             <button
-              onClick={() => dispatch({ type: 'INPUT_DECIMAL' })}
+              onClick={() => dispatch({ type: ActionType.INPUT_DECIMAL })}
               className={numberButtonClass}
             >
               ,
             </button>
             <button
-              onClick={() => dispatch({ type: 'HANDLE_EQUALS' })}
+              onClick={() => dispatch({ type: ActionType.HANDLE_EQUALS })}
               className={operatorButtonClass}
             >
               =
