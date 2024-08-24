@@ -38,7 +38,11 @@ const TimeDisplay = () => {
     }
   }, [])
 
-  return <span className="font-sf-pro-semibold text-[12px]">{currentTime}</span>
+  return (
+    <span className="font-sf-pro-semibold text-[12px] text-white">
+      {currentTime}
+    </span>
+  )
 }
 
 export default TimeDisplay
