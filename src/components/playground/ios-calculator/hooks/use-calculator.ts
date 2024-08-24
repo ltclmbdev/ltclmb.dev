@@ -18,22 +18,32 @@ export function useCalculator(): {
     event.preventDefault()
     const key = event.key
 
-    if (/^[0-9]$/.test(key)) {
-      dispatch({ type: ActionType.INPUT_DIGIT, payload: key })
-    } else if (key === DECIMAL_SEPARATOR) {
-      dispatch({ type: ActionType.INPUT_DECIMAL })
-    } else if (key === '%') {
-      dispatch({ type: ActionType.INPUT_PERCENT })
-    } else if (key === 'Backspace') {
-      dispatch({ type: ActionType.CLEAR_ALL })
-    } else if (key === 'Enter' || key === '=') {
-      dispatch({ type: ActionType.HANDLE_EQUALS })
-    } else if (['+', '-', '*', '/'].includes(key)) {
-      const operatorMap: { [key: string]: string } = { '*': '×', '/': '÷' }
-      dispatch({
-        type: ActionType.PERFORM_OPERATION,
-        payload: operatorMap[key] || key,
-      })
+    switch (true) {
+      case /^[0-9]$/.test(key):
+        dispatch({ type: ActionType.INPUT_DIGIT, payload: key })
+        break
+      case key === DECIMAL_SEPARATOR:
+        dispatch({ type: ActionType.INPUT_DECIMAL })
+        break
+      case key === '%':
+        dispatch({ type: ActionType.INPUT_PERCENT })
+        break
+      case key === 'Backspace':
+        dispatch({ type: ActionType.CLEAR_ALL })
+        break
+      case key === 'Enter' || key === '=':
+        dispatch({ type: ActionType.HANDLE_EQUALS })
+        break
+      case ['+', '-', '*', '/'].includes(key):
+        const operatorMap: { [key: string]: string } = { '*': '×', '/': '÷' }
+        dispatch({
+          type: ActionType.PERFORM_OPERATION,
+          payload: operatorMap[key] || key,
+        })
+        break
+      default:
+        // No action for other keys
+        break
     }
   }, [])
 
