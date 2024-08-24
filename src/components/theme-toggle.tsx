@@ -3,6 +3,7 @@
 import * as React from 'react'
 import { Icon } from '@/components/icons'
 import { useTheme } from 'next-themes'
+import { cn } from '@/utils/cn'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -12,7 +13,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 
-export function ThemeToggle() {
+const ThemeToggle: React.FC<{ className?: string }> = () => {
   const { theme, setTheme } = useTheme()
 
   const toggleTheme = () => {
@@ -45,3 +46,5 @@ export function ThemeToggle() {
     </TooltipProvider>
   )
 }
+
+export default ThemeToggle

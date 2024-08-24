@@ -1,5 +1,25 @@
 @font-face {
-  font-family: 'SFProText';
+  font-family: 'SFProDisplayLight';
+  src:
+    url('subset-SFProDisplay-Light.woff2') format('woff2'),
+    url('subset-SFProDisplay-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SFProDisplay';
+  src:
+    url('subset-SFProDisplay-Regular.woff2') format('woff2'),
+    url('subset-SFProDisplay-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SFProTextSemibold';
   src:
     url('subset-SFProText-Semibold.woff2') format('woff2'),
     url('subset-SFProText-Semibold.woff') format('woff');
@@ -8,34 +28,17 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: 'SFProDisplay';
-  src:
-    url('subset-SFProDisplay-Semibold.woff2') format('woff2'),
-    url('subset-SFProDisplay-Semibold.woff') format('woff');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
+.font-sf-pro-light {
+  font-family: 'SFProDisplayLight';
+  font-weight: 300;
 }
 
-@font-face {
-  font-family: 'SF Pro';
-  src:
-    url('subset-SFPro-Regular.woff2') format('woff2'),
-    url('subset-SFPro-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-.font-sf-pro-text {
-  font-family: 'SFProText';
-  font-weight: 600;
-}
-.font-sf-pro-display {
-  font-family: 'SFProDisplay';
-  font-weight: 600;
-}
 .font-sf-pro {
-  font-family: 'SF Pro';
+  font-family: 'SFProDisplay';
+  font-weight: normal;
+}
+
+.font-sf-pro-semibold {
+  font-family: 'SFProTextSemibold';
+  font-weight: 600;
 }

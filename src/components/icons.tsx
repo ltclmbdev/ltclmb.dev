@@ -143,6 +143,21 @@ const Icons = {
       />
     </g>
   ),
+  Menu: () => (
+    <g>
+      <g clipPath="url(#clip0_208_2)">
+        <path
+          fill="currentColor"
+          d="M1.143 2h5.714a1.143 1.143 0 110 2.286H1.143a1.143 1.143 0 110-2.286zm8 9.143h5.714a1.143 1.143 0 010 2.286H9.143a1.143 1.143 0 110-2.286zm-8-4.572h13.714a1.143 1.143 0 010 2.286H1.143a1.143 1.143 0 110-2.286z"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_208_2">
+          <path fill="currentColor" d="M0 0H16V16H0z" />
+        </clipPath>
+      </defs>
+    </g>
+  ),
 } as const
 
 type IconNames = keyof typeof Icons
