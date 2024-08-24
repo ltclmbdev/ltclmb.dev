@@ -1,17 +1,23 @@
 import * as React from 'react'
 import Image from 'next/image'
+
 import { cn } from '@/utils/cn'
 import { Icon } from '@/components/icons'
-import TimeDisplay from './time-display'
-import IphoneIcons from './iphone-icons'
-import iphoneFrameImg from './assets/images/iphone-15.png'
+
 import { getFontSizeClass } from './utils/get-font-size-class'
 import { formatNumber } from './utils/format-number'
+import { calculate } from './utils/calculate'
+import { countSignificantDigits } from './utils/count-significant-digits'
+import { isHighPriorityOperation } from './utils/is-high-priority-operation'
 import {
   MAX_DISPLAY_DIGITS,
   DECIMAL_SEPARATOR,
   ERROR_MESSAGE,
 } from './utils/constants'
+
+import TimeDisplay from './time-display'
+import IphoneIcons from './iphone-icons'
+import iphoneFrameImg from './assets/images/iphone-15.png'
 
 import './stylesheet.css'
 
@@ -52,16 +58,6 @@ const initialState: State = {
   waitingForOperand: false,
   lastOperation: null,
   pendingLowPriorityOperation: null,
-}
-
-function isHighPriorityOperation(op: string): boolean {
-  return op === '×' || op === '÷'
-}
-
-function countSignificantDigits(numStr: string): number {
-  // Remove leading zeros, decimal comma, thousands separators, and negative sign
-  const trimmed = numStr.replace(/^-?0+|,|\./g, '')
-  return trimmed.length
 }
 
 function calculatorReducer(state: State, action: Action): State {
@@ -349,21 +345,6 @@ function calculatorReducer(state: State, action: Action): State {
       return state
     default:
       return state
-  }
-}
-
-function calculate(a: number, b: number, operator: string): number {
-  switch (operator) {
-    case '+':
-      return a + b
-    case '-':
-      return a - b
-    case '×':
-      return a * b
-    case '÷':
-      return b !== 0 ? a / b : NaN
-    default:
-      return b
   }
 }
 
