@@ -16,7 +16,7 @@ const MobileMenu = () => {
         <SheetTrigger>
           <Icon name="Menu" size="20" />
         </SheetTrigger>
-        <SheetContent className="pt-16">
+        <SheetContent className="pt-16 bg-slate-100">
           <div className="gap-6 flex flex-col items-start">
             <Link
               href="/posts"
