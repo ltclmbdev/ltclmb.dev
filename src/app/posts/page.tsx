@@ -84,7 +84,7 @@ export default async function PostsPage() {
   const restPosts: Post[] = sortedPosts.length > 1 ? sortedPosts.slice(1) : []
 
   return (
-    <div className="container pb-40 pt-8 md:pt-12">
+    <div className="container pb-16 md:pb-24 lg:pb-40 pt-8 md:pt-12">
       <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center">
         All Posts
       </h1>
