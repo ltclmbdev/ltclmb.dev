@@ -415,7 +415,7 @@ const IosCalculator: React.FC = () => {
   const fontSizeClass = getFontSizeClass(state.display)
 
   return (
-    <div className="w-[286px] h-[586px] relative">
+    <div className="w-[286px] h-[586px] relative select-none">
       <Image
         src="/playground/ios-calculator/iphone-15.png"
         alt="iphone 15"
