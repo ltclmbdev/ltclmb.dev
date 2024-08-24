@@ -131,6 +131,18 @@ const Icons = {
       />
     </g>
   ),
+  PlusMinus: () => (
+    <g>
+      <path
+        fill="currentColor"
+        d="M1.546 5.37h3.706v-.567H1.546v.567zm1.57 1.604h.567V3.2h-.568v3.775z"
+      />
+      <path
+        fill="currentColor"
+        d="M1.136 5.78V4.393h1.57V2.789h1.387v1.604h1.569V5.78h-1.57v1.604H2.707V5.78h-1.57zm1.98-.41v1.604h.567V5.37h1.57v-.567h-1.57V3.199h-.567v1.604h-1.57v.567h1.57zM12.795 2.03l-1.25-.451L3.6 13.969l1.25.452 7.946-12.39zM10.38 11.789h4.483v-1.135H10.38v1.135z"
+      />
+    </g>
+  ),
 } as const
 
 type IconNames = keyof typeof Icons
