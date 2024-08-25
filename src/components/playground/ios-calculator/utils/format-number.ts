@@ -2,17 +2,28 @@ import { MAX_DISPLAY_DIGITS, DECIMAL_SEPARATOR } from './constants'
 
 export const formatNumber = (num: number | string): string => {
   if (typeof num === 'string') return num
-  // Round to MAX_DISPLAY_DIGITS - 1 decimal places to avoid floating point precision issues
-  const rounded = Number(num.toFixed(MAX_DISPLAY_DIGITS - 1))
-  const [integerPart, decimalPart] = rounded.toString().split('.')
 
-  const formattedIntegerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+  // Convert to string and split into integer and decimal parts
+  const [integerPart, decimalPart] = num.toString().split('.')
 
-  if (decimalPart) {
-    const trimmedDecimal = decimalPart.replace(/0+$/, '')
-    return trimmedDecimal
-      ? `${formattedIntegerPart}${DECIMAL_SEPARATOR}${trimmedDecimal}`
-      : formattedIntegerPart
+  // Calculate how many decimal places we can show
+  const integerDigits = integerPart.replace('-', '').length
+  const maxDecimalPlaces = Math.max(0, MAX_DISPLAY_DIGITS - integerDigits)
+
+  // Round to the calculated decimal places
+  const rounded = Number(num.toFixed(maxDecimalPlaces))
+
+  // Split again after rounding
+  const [roundedInteger, roundedDecimal] = rounded.toString().split('.')
+
+  // Format the integer part with thousands separators
+  const formattedIntegerPart = roundedInteger.replace(
+    /\B(?=(\d{3})+(?!\d))/g,
+    '.',
+  )
+
+  if (roundedDecimal) {
+    return `${formattedIntegerPart}${DECIMAL_SEPARATOR}${roundedDecimal}`
   }
   return formattedIntegerPart
 }
