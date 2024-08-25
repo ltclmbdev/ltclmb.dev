@@ -24,9 +24,9 @@ const IosCalculator: React.FC = () => {
   const operatorButtonClass = (operator: string) =>
     cn(
       buttonClass,
-      'text-[28px] transition-colors duration-200',
+      'text-[28px] transition-colors duration-200 active:bg-[#fcc78d]',
       state.selectedOperator === operator
-        ? 'bg-white text-[#FF9D0A]'
+        ? 'bg-white text-[#FF9D0A] active:bg-white active:text-[#FF9D0A]'
         : 'bg-[#FF9D0A] text-white',
     )
   const numberButtonClass = cn(
