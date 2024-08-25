@@ -7,7 +7,7 @@ export default function CalculatorPage() {
   return (
     <div className="container pb-16 md:pb-24 lg:pb-40 pt-8 md:pt-12">
       <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-        iOS Calculator App
+        iOS 17 Calculator App
       </h1>
       <div className="mt-20 flex justify-center">
         <Calculator />
