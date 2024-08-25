@@ -30,7 +30,13 @@ const IosCalculator: React.FC = () => {
 
   return (
     <div className="w-[286px] h-[586px] relative select-none">
-      <Image src={iphoneFrameImg} alt="iphone 15" width={661} height={1355} />
+      <Image
+        src={iphoneFrameImg}
+        alt="iphone 15"
+        width={661}
+        height={1355}
+        priority
+      />
       <div className="absolute w-full top-5 px-10 left-0 flex justify-between items-center h-6">
         <div>
           <TimeDisplay />
