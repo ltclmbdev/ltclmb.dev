@@ -1,31 +1,19 @@
 import * as React from 'react'
 import type { Metadata } from 'next'
-import { StaticImageData } from 'next/image'
 import Calculator from '@/components/playground/ios-calculator/ios-calculator'
 import ShareButton from '@/components/share-button'
 import GithubButton from '@/components/github-button'
-import postImage from '@/components/playground/ios-calculator/assets/images/post-image.png'
-
-export const dataForMetadata: {
-  title: string
-  description: string
-  postImage: StaticImageData
-} = {
-  title: 'iOS 17 Calculator App clone',
-  description:
-    'Here I create an iOS 17 Calculator App clone (with some help of Claude)',
-  postImage: postImage,
-}
+import { pageMetadata } from './data'
 
 export const metadata: Metadata = {
-  title: dataForMetadata.title,
-  description: dataForMetadata.description,
+  title: pageMetadata.title,
+  description: pageMetadata.description,
   alternates: {
     canonical: `${process.env.NEXT_PUBLIC_URL}/playground/ios-calculator`,
   },
   openGraph: {
-    title: dataForMetadata.title,
-    description: dataForMetadata.description,
+    title: pageMetadata.title,
+    description: pageMetadata.description,
     url: `${process.env.NEXT_PUBLIC_URL}/playground/ios-calculator`,
     images: [
       {
@@ -38,8 +26,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: dataForMetadata.title,
-    description: dataForMetadata.description,
+    title: pageMetadata.title,
+    description: pageMetadata.description,
     images: [
       `${process.env.NEXT_PUBLIC_URL}/playground/ios-calculator/opengraph-image`,
     ],

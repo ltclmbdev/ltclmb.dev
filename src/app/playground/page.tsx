@@ -50,8 +50,8 @@ async function getPlaygroundEntries(): Promise<PlaygroundEntry[]> {
   const playgroundEntries: PlaygroundEntry[] = await Promise.all(
     entries.map(async entry => {
       const slug = entry.name
-      const { dataForMetadata } = (await import(`./${slug}/page`)) as {
-        dataForMetadata: {
+      const { pageMetadata } = (await import(`./${slug}/data`)) as {
+        pageMetadata: {
           title: string
           description: string
           postImage: StaticImageData
@@ -59,9 +59,9 @@ async function getPlaygroundEntries(): Promise<PlaygroundEntry[]> {
       }
       return {
         slug,
-        title: dataForMetadata.title as string,
-        description: dataForMetadata.description as string | undefined,
-        postImage: dataForMetadata.postImage as any,
+        title: pageMetadata.title,
+        description: pageMetadata.description,
+        postImage: pageMetadata.postImage,
       }
     }),
   )
