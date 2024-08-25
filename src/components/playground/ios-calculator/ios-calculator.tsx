@@ -25,8 +25,14 @@ const IosCalculator: React.FC = () => {
     buttonClass,
     'bg-[#FF9D0A] text-white text-[28px]',
   )
-  const numberButtonClass = cn(buttonClass, 'bg-[#333333] text-white text-2xl')
-  const functionButtonClass = cn(buttonClass, 'bg-[#A5A5A5] text-black text-xl')
+  const numberButtonClass = cn(
+    buttonClass,
+    'bg-[#333333] text-white text-2xl active:bg-[#737373] transition-[background-color]  duration-500 ease-out active:duration-0',
+  )
+  const functionButtonClass = cn(
+    buttonClass,
+    'bg-[#A5A5A5] text-black text-xl active:bg-[#d9d9d9] transition-[background-color]  duration-500 ease-out active:duration-0',
+  )
 
   const fontSizeClass = getFontSizeClass(state.display)
 
