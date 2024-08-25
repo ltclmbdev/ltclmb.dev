@@ -21,17 +21,21 @@ const IosCalculator: React.FC = () => {
 
   const buttonClass =
     'w-[52px] h-[52px] rounded-full focus:outline-none flex justify-center items-center font-sf-pro'
-  const operatorButtonClass = cn(
-    buttonClass,
-    'bg-[#FF9D0A] text-white text-[28px]',
-  )
+  const operatorButtonClass = (operator: string) =>
+    cn(
+      buttonClass,
+      'text-[28px] transition-colors duration-200',
+      state.selectedOperator === operator
+        ? 'bg-white text-[#FF9D0A]'
+        : 'bg-[#FF9D0A] text-white',
+    )
   const numberButtonClass = cn(
     buttonClass,
-    'bg-[#333333] text-white text-2xl active:bg-[#737373] transition-[background-color]  duration-500 ease-out active:duration-0',
+    'bg-[#333333] text-white text-2xl active:bg-[#737373] transition-[background-color] duration-500 ease-out active:duration-0',
   )
   const functionButtonClass = cn(
     buttonClass,
-    'bg-[#A5A5A5] text-black text-xl active:bg-[#d9d9d9] transition-[background-color]  duration-500 ease-out active:duration-0',
+    'bg-[#A5A5A5] text-black text-xl active:bg-[#d9d9d9] transition-[background-color] duration-500 ease-out active:duration-0',
   )
 
   const fontSizeClass = getFontSizeClass(state.display)
@@ -84,7 +88,7 @@ const IosCalculator: React.FC = () => {
               onClick={() =>
                 dispatch({ type: ActionType.PERFORM_OPERATION, payload: '÷' })
               }
-              className={operatorButtonClass}
+              className={operatorButtonClass('÷')}
             >
               ÷
             </button>
@@ -107,7 +111,7 @@ const IosCalculator: React.FC = () => {
               onClick={() =>
                 dispatch({ type: ActionType.PERFORM_OPERATION, payload: '×' })
               }
-              className={operatorButtonClass}
+              className={operatorButtonClass('×')}
             >
               ×
             </button>
@@ -130,7 +134,7 @@ const IosCalculator: React.FC = () => {
               onClick={() =>
                 dispatch({ type: ActionType.PERFORM_OPERATION, payload: '-' })
               }
-              className={operatorButtonClass}
+              className={operatorButtonClass('-')}
             >
               -
             </button>
@@ -153,7 +157,7 @@ const IosCalculator: React.FC = () => {
               onClick={() =>
                 dispatch({ type: ActionType.PERFORM_OPERATION, payload: '+' })
               }
-              className={operatorButtonClass}
+              className={operatorButtonClass('+')}
             >
               +
             </button>
@@ -177,7 +181,7 @@ const IosCalculator: React.FC = () => {
             </button>
             <button
               onClick={() => dispatch({ type: ActionType.HANDLE_EQUALS })}
-              className={operatorButtonClass}
+              className={operatorButtonClass('=')}
             >
               =
             </button>

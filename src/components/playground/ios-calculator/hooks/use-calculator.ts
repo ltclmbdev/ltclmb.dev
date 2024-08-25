@@ -8,11 +8,40 @@ import {
 } from '../reducers/calculator-reducer'
 import { DECIMAL_SEPARATOR } from '../utils/constants'
 
+type ExtendedState = State & {
+  selectedOperator: string | null
+}
+
+const extendedInitialState: ExtendedState = {
+  ...initialState,
+  selectedOperator: null,
+}
+
 export function useCalculator(): {
-  state: State
+  state: ExtendedState
   dispatch: React.Dispatch<Action>
 } {
-  const [state, dispatch] = React.useReducer(calculatorReducer, initialState)
+  const [state, dispatch] = React.useReducer(
+    (state: ExtendedState, action: Action): ExtendedState => {
+      const newState = calculatorReducer(state, action)
+      let selectedOperator = state.selectedOperator
+
+      if (action.type === ActionType.PERFORM_OPERATION) {
+        selectedOperator = action.payload
+      } else if (
+        action.type === ActionType.INPUT_DIGIT ||
+        action.type === ActionType.INPUT_DECIMAL ||
+        action.type === ActionType.HANDLE_EQUALS ||
+        action.type === ActionType.CLEAR_ALL
+      ) {
+        selectedOperator = null
+      }
+
+      return { ...newState, selectedOperator }
+    },
+    extendedInitialState,
+  )
+
   const audioRef = React.useRef<HTMLAudioElement | null>(null)
 
   React.useEffect(() => {
