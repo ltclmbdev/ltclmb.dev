@@ -1,4 +1,5 @@
 import * as React from 'react'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import ImageWithBlur from '@/components/image-with-blur'
 import { isEmpty } from 'lodash'
@@ -12,6 +13,34 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import Author from '@/components/author'
+import config from '@/config'
+
+export const metadata: Metadata = {
+  title: `${config.defaultTitle} - All Posts`,
+  description: 'All posts at ltclmb.dev',
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_URL}/posts/`,
+  },
+  openGraph: {
+    title: `${config.defaultTitle} - All Posts`,
+    description: 'All posts at ltclmb.dev',
+    url: `${process.env.NEXT_PUBLIC_URL}/posts/`,
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_URL}/posts/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: 'All Posts',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${config.defaultTitle} - All Posts`,
+    description: 'All posts at ltclmb.dev',
+    images: [`${process.env.NEXT_PUBLIC_URL}/posts/opengraph-image`],
+  },
+}
 
 const RecentPostPreview: React.FC<{ post: Post }> = ({ post }) => (
   <div className="bg-gradient-to-tr from-[#538392] to-[#76ABAE] rounded-lg shadow-2xl shadow-gray-500/20">
@@ -53,11 +82,8 @@ const RecentPostPreview: React.FC<{ post: Post }> = ({ post }) => (
 )
 
 const PostPreview: React.FC<{ post: Post }> = ({ post }) => (
-  <Card className="shadow-2xl shadow-gray-500/20 overflow-hidden dark:shadow-none flex">
-    <Link
-      href={`/posts/${post.slug.current}`}
-      className="bg-slate-100 duration-150 dark:bg-[#31363F] hover:bg-white hover:dark:bg-white/25 flex flex-col w-full"
-    >
+  <Card className="bg-slate-100 duration-150 dark:bg-[#31363F] hover:bg-white hover:dark:bg-white/25 shadow-2xl shadow-gray-500/20 overflow-hidden dark:shadow-none flex">
+    <Link href={`/posts/${post.slug.current}`} className="flex flex-col w-full">
       <CardHeader className="pb-3">
         <CardTitle>{post.title}</CardTitle>
       </CardHeader>

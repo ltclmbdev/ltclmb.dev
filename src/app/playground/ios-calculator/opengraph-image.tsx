@@ -1,18 +1,15 @@
 import { ImageResponse } from 'next/og'
-import { getPostBySlug } from '@/lib/posts'
 
 export const runtime = 'edge'
 
-export const alt = 'Post'
+export const alt = 'iOS 17 Calculator App'
 export const size = {
   width: 1200,
   height: 630,
 }
 export const contentType = 'image/png'
 
-export default async function Image({ params }: { params: { slug: string } }) {
-  const post = await getPostBySlug(params.slug)
-
+export default async function Image() {
   const geistLight = fetch(
     new URL('../../../../public/fonts/Geist-Light.ttf', import.meta.url),
   ).then(res => res.arrayBuffer())
@@ -64,7 +61,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
             fontFamily: 'GeistBold',
           }}
         >
-          post:
+          playground:
         </div>
         <div
           style={{
@@ -78,7 +75,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
             fontFamily: 'GeistLight',
           }}
         >
-          {post.title}
+          iOS 17 Calculator App
         </div>
       </div>
     ),

@@ -36,7 +36,7 @@ const PostTemplate: React.FC<{ post: Post }> = async ({ post }) => {
       <div className="prose prose-xl max-w-none dark:prose-dark w-full">
         <MdxContent>{post.body}</MdxContent>
       </div>
-      <ShareButton title={post.title} className="mt-20" />
+      <ShareButton title={post.title} className="mt-10 md:mt-20" />
     </article>
   )
 }

@@ -1,27 +1,25 @@
 import { ImageResponse } from 'next/og'
-import { getPostBySlug } from '@/lib/posts'
 
 export const runtime = 'edge'
 
-export const alt = 'Post'
+export const alt = 'Playground'
 export const size = {
   width: 1200,
   height: 630,
 }
 export const contentType = 'image/png'
 
-export default async function Image({ params }: { params: { slug: string } }) {
-  const post = await getPostBySlug(params.slug)
-
+export default async function Image() {
   const geistLight = fetch(
-    new URL('../../../../public/fonts/Geist-Light.ttf', import.meta.url),
+    new URL('../../../public/fonts/Geist-Light.ttf', import.meta.url),
   ).then(res => res.arrayBuffer())
+
   const geistBold = fetch(
-    new URL('../../../../public/fonts/Geist-Bold.ttf', import.meta.url),
+    new URL('../../../public/fonts/Geist-Bold.ttf', import.meta.url),
   ).then(res => res.arrayBuffer())
 
   const logoData = await fetch(
-    new URL('../../../../public/images/og-logo.png', import.meta.url),
+    new URL('../../../public/images/og-logo.png', import.meta.url),
   ).then(res => res.arrayBuffer())
   const logoBase64 = Buffer.from(logoData).toString('base64')
 
@@ -29,7 +27,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
     (
       <div
         style={{
-          fontSize: 64,
+          fontSize: 80,
           background: 'black',
           width: '100%',
           height: '100%',
@@ -53,21 +51,6 @@ export default async function Image({ params }: { params: { slug: string } }) {
         />
         <div
           style={{
-            display: 'flex',
-            justifyContent: 'center',
-            width: '100%',
-            marginTop: '30px',
-            fontSize: '42px',
-            color: '#8f8f8f',
-            fontWeight: 900,
-            textTransform: 'uppercase',
-            fontFamily: 'GeistBold',
-          }}
-        >
-          post:
-        </div>
-        <div
-          style={{
             width: '768px',
             display: 'flex',
             flexDirection: 'column',
@@ -76,9 +59,10 @@ export default async function Image({ params }: { params: { slug: string } }) {
             textAlign: 'center',
             marginTop: '40px',
             fontFamily: 'GeistLight',
+            textTransform: 'uppercase',
           }}
         >
-          {post.title}
+          playground
         </div>
       </div>
     ),
