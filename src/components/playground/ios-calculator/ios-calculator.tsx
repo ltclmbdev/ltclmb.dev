@@ -40,6 +40,11 @@ const IosCalculator: React.FC = () => {
 
   const fontSizeClass = getFontSizeClass(state.display)
 
+  // Function to format the display, replacing minus sign with en dash for negative numbers
+  const formatDisplay = (display: string) => {
+    return display.startsWith('-') ? `–${display.slice(1)}` : display
+  }
+
   return (
     <div className="w-[286px] h-[586px] relative select-none">
       <Image
@@ -63,7 +68,7 @@ const IosCalculator: React.FC = () => {
               'text-[#cccccc] mb-3 font-sf-pro-light !leading-none px-2 h-16 flex items-center justify-end',
             )}
           >
-            <span>{state.display}</span>
+            <span>{formatDisplay(state.display)}</span>
           </div>
           <div className="grid grid-cols-4 gap-[10px]">
             <button
@@ -136,7 +141,7 @@ const IosCalculator: React.FC = () => {
               }
               className={operatorButtonClass('-')}
             >
-              -
+              –
             </button>
 
             {[1, 2, 3].map(digit => (

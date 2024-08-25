@@ -1,6 +1,7 @@
 export const getFontSizeClass = (display: string): string => {
-  const digitCount = display.replace(/[,.-]/g, '').length
-  const isNegative = display.startsWith('-')
+  const digitCount = display.replace(/[,.\-–]/g, '').length
+  const isNegative = display.startsWith('-') || display.startsWith('–')
+  console.log({ isNegative, digitCount, display })
 
   if (digitCount <= 4) return 'text-[64px]'
   if (digitCount === 5) return isNegative ? 'text-[61px]' : 'text-[64px]'

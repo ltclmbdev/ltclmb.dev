@@ -67,9 +67,11 @@ export const calculatorReducer = (state: State, action: Action): State => {
       } else {
         let newDisplay: string
         if (state.display.includes(DECIMAL_SEPARATOR)) {
-          newDisplay = state.display + action.payload
+          newDisplay = state.display.replace('–', '-') + action.payload
         } else {
-          const currentNum = parseFloat(state.display.replace(/\./g, ''))
+          const currentNum = parseFloat(
+            state.display.replace(/\./g, '').replace('–', '-'),
+          )
           const newNum =
             currentNum * 10 +
             (currentNum < 0
@@ -79,7 +81,7 @@ export const calculatorReducer = (state: State, action: Action): State => {
         }
 
         if (
-          countSignificantDigits(newDisplay.replace('-', '')) >
+          countSignificantDigits(newDisplay.replace('–', '')) >
           MAX_DISPLAY_DIGITS
         ) {
           return state // Ignore input if it would exceed MAX_DISPLAY_DIGITS significant digits
@@ -88,7 +90,10 @@ export const calculatorReducer = (state: State, action: Action): State => {
           ...state,
           display: newDisplay,
           currentOperand: parseFloat(
-            newDisplay.replace(/\./g, '').replace(DECIMAL_SEPARATOR, '.'),
+            newDisplay
+              .replace(/\./g, '')
+              .replace(DECIMAL_SEPARATOR, '.')
+              .replace('–', '-'),
           ),
         }
       }
@@ -113,7 +118,10 @@ export const calculatorReducer = (state: State, action: Action): State => {
     case ActionType.INPUT_PERCENT:
       if (state.display === ERROR_MESSAGE) return initialState
       const currentValue = parseFloat(
-        state.display.replace(/\./g, '').replace(DECIMAL_SEPARATOR, '.'),
+        state.display
+          .replace(/\./g, '')
+          .replace(DECIMAL_SEPARATOR, '.')
+          .replace('–', '-'),
       )
       let percentValue: number
       if (state.previousOperand !== null && state.operator) {
@@ -130,12 +138,15 @@ export const calculatorReducer = (state: State, action: Action): State => {
     case ActionType.TOGGLE_SIGN:
       if (state.display === ERROR_MESSAGE) return initialState
       const currentNum = parseFloat(
-        state.display.replace(/\./g, '').replace(DECIMAL_SEPARATOR, '.'),
+        state.display
+          .replace(/\./g, '')
+          .replace(DECIMAL_SEPARATOR, '.')
+          .replace('–', '-'),
       )
       const toggledValue = -currentNum
-      const newDisplay = formatNumber(toggledValue)
+      const newDisplay = formatNumber(toggledValue).replace('-', '–')
       if (
-        countSignificantDigits(newDisplay.replace('-', '')) > MAX_DISPLAY_DIGITS
+        countSignificantDigits(newDisplay.replace('–', '')) > MAX_DISPLAY_DIGITS
       ) {
         return state
       }
@@ -244,7 +255,10 @@ export const calculatorReducer = (state: State, action: Action): State => {
         return {
           ...state,
           previousOperand: parseFloat(
-            state.display.replace(/\./g, '').replace(DECIMAL_SEPARATOR, '.'),
+            state.display
+              .replace(/\./g, '')
+              .replace(DECIMAL_SEPARATOR, '.')
+              .replace('–', '-'),
           ),
           currentOperand: null,
           operator: action.payload,
@@ -306,7 +320,10 @@ export const calculatorReducer = (state: State, action: Action): State => {
       } else if (state.lastOperation) {
         const result = calculate(
           parseFloat(
-            state.display.replace(/\./g, '').replace(DECIMAL_SEPARATOR, '.'),
+            state.display
+              .replace(/\./g, '')
+              .replace(DECIMAL_SEPARATOR, '.')
+              .replace('–', '-'),
           ),
           state.lastOperation.operand,
           state.lastOperation.operator,
@@ -329,8 +346,8 @@ export const calculatorReducer = (state: State, action: Action): State => {
           waitingForOperand: true,
         }
       }
-      return state
+      return state // If no operation can be performed, return the current state
     default:
-      return state
+      return state // Handle any unknown action types
   }
 }

@@ -22,8 +22,14 @@ export const formatNumber = (num: number | string): string => {
     '.',
   )
 
+  // Construct the final formatted number
+  let formattedNumber = formattedIntegerPart
   if (roundedDecimal) {
-    return `${formattedIntegerPart}${DECIMAL_SEPARATOR}${roundedDecimal}`
+    formattedNumber += `${DECIMAL_SEPARATOR}${roundedDecimal}`
   }
-  return formattedIntegerPart
+
+  // Replace minus sign with en dash for negative numbers
+  return formattedNumber.startsWith('-')
+    ? `–${formattedNumber.slice(1)}`
+    : formattedNumber
 }
