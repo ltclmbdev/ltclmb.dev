@@ -10,8 +10,8 @@ export const size = {
 export const contentType = 'image/png'
 
 export default async function Image() {
-  const geistLight = fetch(
-    new URL('../../../../public/fonts/Geist-Light.ttf', import.meta.url),
+  const geistRegular = fetch(
+    new URL('../../../../public/fonts/Geist-Regular.ttf', import.meta.url),
   ).then(res => res.arrayBuffer())
   const geistBold = fetch(
     new URL('../../../../public/fonts/Geist-Bold.ttf', import.meta.url),
@@ -58,7 +58,7 @@ export default async function Image() {
             color: '#8f8f8f',
             fontWeight: 900,
             textTransform: 'uppercase',
-            fontFamily: 'GeistBold',
+            fontFamily: 'GeistRegular',
           }}
         >
           playground:
@@ -72,7 +72,7 @@ export default async function Image() {
             justifyContent: 'center',
             textAlign: 'center',
             marginTop: '40px',
-            fontFamily: 'GeistLight',
+            fontFamily: 'GeistBold',
           }}
         >
           iOS 17 Calculator App
@@ -83,8 +83,8 @@ export default async function Image() {
       ...size,
       fonts: [
         {
-          name: 'GeistLight',
-          data: await geistLight,
+          name: 'GeistRegular',
+          data: await geistRegular,
           style: 'normal',
           weight: 400,
         },

@@ -10,12 +10,8 @@ export const size = {
 export const contentType = 'image/png'
 
 export default async function Image() {
-  const geistLight = fetch(
-    new URL('../../../public/fonts/Geist-Light.ttf', import.meta.url),
-  ).then(res => res.arrayBuffer())
-
-  const geistBold = fetch(
-    new URL('../../../public/fonts/Geist-Bold.ttf', import.meta.url),
+  const geistMedium = fetch(
+    new URL('../../../public/fonts/Geist-Medium.ttf', import.meta.url),
   ).then(res => res.arrayBuffer())
 
   const logoData = await fetch(
@@ -58,8 +54,9 @@ export default async function Image() {
             justifyContent: 'center',
             textAlign: 'center',
             marginTop: '40px',
-            fontFamily: 'GeistLight',
+            fontFamily: 'GeistMedium',
             textTransform: 'uppercase',
+            color: '#8f8f8f',
           }}
         >
           posts
@@ -70,14 +67,8 @@ export default async function Image() {
       ...size,
       fonts: [
         {
-          name: 'GeistLight',
-          data: await geistLight,
-          style: 'normal',
-          weight: 400,
-        },
-        {
-          name: 'GeistBold',
-          data: await geistBold,
+          name: 'GeistMedium',
+          data: await geistMedium,
           style: 'normal',
           weight: 400,
         },
