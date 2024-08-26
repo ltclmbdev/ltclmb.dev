@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: `${config.defaultTitle} - Playground`,
   description: 'Playground at ltclmb.dev',
   alternates: {
-    canonical: `${config.defaultSiteUrl}/playground/`,
+    canonical: `${config.defaultSiteUrl}/playground`,
   },
   openGraph: {
     title: `${config.defaultTitle} - Playground`,

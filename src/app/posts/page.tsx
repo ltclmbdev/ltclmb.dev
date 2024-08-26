@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: `${config.defaultTitle} - All Posts`,
   description: 'All posts at ltclmb.dev',
   alternates: {
-    canonical: `${config.defaultSiteUrl}/posts/`,
+    canonical: `${config.defaultSiteUrl}/posts`,
   },
   openGraph: {
     title: `${config.defaultTitle} - All Posts`,
