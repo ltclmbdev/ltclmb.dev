@@ -1,11 +1,25 @@
 import { MetadataRoute } from 'next'
 import { getAllPosts, type Post } from '@/lib/posts'
+import config from '@/config'
+import fs from 'fs'
+import path from 'path'
+
+async function getPlaygroundSlugs(): Promise<string[]> {
+  const playgroundPath = path.join(process.cwd(), 'src', 'app', 'playground')
+  const entries = fs
+    .readdirSync(playgroundPath, { withFileTypes: true })
+    .filter(dirent => dirent.isDirectory() && dirent.name !== 'page.tsx')
+    .map(dirent => dirent.name)
+
+  return entries
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const sitemapEntries: MetadataRoute.Sitemap = []
   const posts = await getAllPosts()
+  const playgroundSlugs = await getPlaygroundSlugs()
 
-  // Posts
+  // Individual Posts
   posts.forEach((post: Post) => {
     let url: string
     let priority: number
@@ -18,7 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       | 'always'
       | 'never'
 
-    url = `${process.env.NEXT_PUBLIC_URL}/posts/${post.slug.current}`
+    url = `${config.defaultSiteUrl}/posts/${post.slug.current}`
     priority = 0.8
     changeFrequency = 'monthly'
 
@@ -30,17 +44,43 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
   })
 
-  // About
-  sitemapEntries.unshift({
-    url: `${process.env.NEXT_PUBLIC_URL}/about`,
+  // Playground pages
+  playgroundSlugs.forEach((slug: string) => {
+    sitemapEntries.push({
+      url: `${config.defaultSiteUrl}/playground/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    })
+  })
+
+  // Posts index
+  sitemapEntries.push({
+    url: `${config.defaultSiteUrl}/posts`,
     lastModified: new Date(),
     changeFrequency: 'daily',
+    priority: 0.9,
+  })
+
+  // Playground index
+  sitemapEntries.push({
+    url: `${config.defaultSiteUrl}/playground`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.9,
+  })
+
+  // About
+  sitemapEntries.push({
+    url: `${config.defaultSiteUrl}/about`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
     priority: 0.6,
   })
 
   // Homepage
   sitemapEntries.unshift({
-    url: `${process.env.NEXT_PUBLIC_URL}`,
+    url: `${config.defaultSiteUrl}`,
     lastModified: new Date(),
     changeFrequency: 'daily',
     priority: 1,
