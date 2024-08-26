@@ -2,6 +2,7 @@ import React from 'react'
 import { getAllPosts, getPostBySlug } from '@/lib/posts'
 import PostTemplate from '@/templates/post-template'
 import { Metadata } from 'next'
+import config from '@/config'
 
 export async function generateMetadata({
   params,
@@ -14,16 +15,16 @@ export async function generateMetadata({
     title: post.title,
     description: post.description,
     alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_URL}/posts/${params.slug}`,
+      canonical: `${config.defaultSiteUrl}/posts/${params.slug}`,
     },
     openGraph: {
       title: post.title,
       description: post.description,
       type: 'article',
-      url: `${process.env.NEXT_PUBLIC_URL}/posts/${params.slug}`,
+      url: `${config.defaultSiteUrl}/posts/${params.slug}`,
       images: [
         {
-          url: `${process.env.NEXT_PUBLIC_URL}/posts/${params.slug}/opengraph-image`,
+          url: `${config.defaultSiteUrl}/posts/${params.slug}/opengraph-image`,
           width: 1200,
           height: 630,
           alt: post.title,
@@ -34,9 +35,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: post.title,
       description: post.description,
-      images: [
-        `${process.env.NEXT_PUBLIC_URL}/posts/${params.slug}/opengraph-image`,
-      ],
+      images: [`${config.defaultSiteUrl}/posts/${params.slug}/opengraph-image`],
     },
   }
 }

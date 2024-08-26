@@ -3,15 +3,16 @@ import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import '@/styles/globals.css'
+import config from '@/config'
 
 import Navigation from '@/components/app/navigation'
 import Providers from '@/providers/providers'
 
 export const metadata: Metadata = {
-  title: 'Yevhen Nahalskyi - front end developer',
-  description: "Yevhen Nahalskyi's personal site",
+  title: config.defaultTitle,
+  description: config.defaultDescription,
   alternates: {
-    canonical: 'https://www.ltclmb.dev/',
+    canonical: config.defaultSiteUrl,
   },
 }
 

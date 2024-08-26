@@ -18,15 +18,15 @@ export const metadata: Metadata = {
   title: `${config.defaultTitle} - Playground`,
   description: 'Playground at ltclmb.dev',
   alternates: {
-    canonical: `${process.env.NEXT_PUBLIC_URL}/playground/`,
+    canonical: `${config.defaultSiteUrl}/playground/`,
   },
   openGraph: {
     title: `${config.defaultTitle} - Playground`,
     description: 'Playground at ltclmb.dev',
-    url: `${process.env.NEXT_PUBLIC_URL}/playground/`,
+    url: `${config.defaultSiteUrl}/playground/`,
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_URL}/playground/opengraph-image`,
+        url: `${config.defaultSiteUrl}/playground/opengraph-image`,
         width: 1200,
         height: 630,
         alt: 'All Posts',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: `${config.defaultTitle} - Playground`,
     description: 'Playground at ltclmb.dev',
-    images: [`${process.env.NEXT_PUBLIC_URL}/playground/opengraph-image`],
+    images: [`${config.defaultSiteUrl}/playground/opengraph-image`],
   },
 }
 

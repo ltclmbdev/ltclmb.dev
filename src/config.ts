@@ -3,7 +3,8 @@
 // const config: DefaultSeoProps & { author: string } = {
 const config = {
   defaultTitle: process.env.NEXT_PUBLIC_SITE_TITLE,
-  description: process.env.NEXT_PUBLIC_PRODUCT_DESCRIPTION,
+  defaultDescription: process.env.NEXT_PUBLIC_PRODUCT_DESCRIPTION,
+  defaultSiteUrl: process.env.NEXT_PUBLIC_SITE_URL,
   author: process.env.NEXT_PUBLIC_AUTHOR_FULL_NAME,
   // additionalLinkTags: [
   //   {

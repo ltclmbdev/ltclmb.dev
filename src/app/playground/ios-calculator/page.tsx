@@ -4,20 +4,21 @@ import Calculator from '@/components/playground/ios-calculator/ios-calculator'
 import ShareButton from '@/components/share-button'
 import GithubButton from '@/components/github-button'
 import { pageMetadata } from './data'
+import config from '@/config'
 
 export const metadata: Metadata = {
   title: pageMetadata.title,
   description: pageMetadata.description,
   alternates: {
-    canonical: `${process.env.NEXT_PUBLIC_URL}/playground/ios-calculator`,
+    canonical: `${config.defaultSiteUrl}/playground/ios-calculator`,
   },
   openGraph: {
     title: pageMetadata.title,
     description: pageMetadata.description,
-    url: `${process.env.NEXT_PUBLIC_URL}/playground/ios-calculator`,
+    url: `${config.defaultSiteUrl}/playground/ios-calculator`,
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_URL}/playground/ios-calculator/opengraph-image`,
+        url: `${config.defaultSiteUrl}/playground/ios-calculator/opengraph-image`,
         width: 1200,
         height: 630,
         alt: 'iOS 17 Calculator App clone',
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
     title: pageMetadata.title,
     description: pageMetadata.description,
     images: [
-      `${process.env.NEXT_PUBLIC_URL}/playground/ios-calculator/opengraph-image`,
+      `${config.defaultSiteUrl}/playground/ios-calculator/opengraph-image`,
     ],
   },
 }

@@ -19,15 +19,15 @@ export const metadata: Metadata = {
   title: `${config.defaultTitle} - All Posts`,
   description: 'All posts at ltclmb.dev',
   alternates: {
-    canonical: `${process.env.NEXT_PUBLIC_URL}/posts/`,
+    canonical: `${config.defaultSiteUrl}/posts/`,
   },
   openGraph: {
     title: `${config.defaultTitle} - All Posts`,
     description: 'All posts at ltclmb.dev',
-    url: `${process.env.NEXT_PUBLIC_URL}/posts/`,
+    url: `${config.defaultSiteUrl}/posts/`,
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_URL}/posts/opengraph-image`,
+        url: `${config.defaultSiteUrl}/posts/opengraph-image`,
         width: 1200,
         height: 630,
         alt: 'All Posts',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: `${config.defaultTitle} - All Posts`,
     description: 'All posts at ltclmb.dev',
-    images: [`${process.env.NEXT_PUBLIC_URL}/posts/opengraph-image`],
+    images: [`${config.defaultSiteUrl}/posts/opengraph-image`],
   },
 }
 
