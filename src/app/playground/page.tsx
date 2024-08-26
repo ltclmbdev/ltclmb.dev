@@ -1,8 +1,8 @@
-import * as React from 'react'
-import Image, { StaticImageData } from 'next/image'
-import type { Metadata } from 'next'
 import fs from 'fs'
 import path from 'path'
+import * as React from 'react'
+import type { Metadata } from 'next'
+import Image, { StaticImageData } from 'next/image'
 import Link from 'next/link'
 import { isEmpty } from 'lodash'
 import config from '@/config'
@@ -73,28 +73,28 @@ export default async function PlaygroundPage() {
   const entries = await getPlaygroundEntries()
 
   return (
-    <div className="container pb-16 md:pb-24 lg:pb-40 pt-8 md:pt-12">
-      <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+    <div className="container pb-16 pt-8 md:pb-24 md:pt-12 lg:pb-40">
+      <h1 className="mb-4 text-center text-3xl font-bold md:text-4xl">
         Playground
       </h1>
-      <h2 className="text-base text-muted-foreground font-medium md:text-lg mb-10 md:mb-16 text-center">
+      <h2 className="mb-10 text-center text-base font-medium text-muted-foreground md:mb-16 md:text-lg">
         Here is the playground for my dev experiments
       </h2>
       {!isEmpty(entries) && (
-        <div className="grid md:grid-cols-2 gap-5 mt-5">
+        <div className="mt-5 grid gap-5 md:grid-cols-2">
           {entries.map(entry => (
             <Link
               key={entry.slug}
-              className="border py-4 pr-4 rounded-lg flex bg-slate-100 duration-150 dark:bg-[#31363F] hover:bg-white hover:dark:bg-white/25 shadow-2xl shadow-gray-500/20 overflow-hidden dark:shadow-none"
+              className="flex overflow-hidden rounded-lg border bg-slate-100 py-4 pr-4 shadow-2xl shadow-gray-500/20 duration-150 hover:bg-white dark:bg-[#31363F] dark:shadow-none hover:dark:bg-white/25"
               href={`/playground/${entry.slug}`}
             >
-              <div className="shrink-0 aspect-square relative size-24">
+              <div className="relative aspect-square size-24 shrink-0">
                 <Image src={entry.postImage} alt={entry.title} fill />
               </div>
               <div className="grow">
                 <h3 className="text-xl font-semibold">{entry.title}</h3>
                 {entry.description && (
-                  <p className="text-sm text-muted-foreground mt-2">
+                  <p className="mt-2 text-sm text-muted-foreground">
                     {entry.description}
                   </p>
                 )}

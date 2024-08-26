@@ -2,18 +2,14 @@
 
 import * as React from 'react'
 import Image from 'next/image'
-
-import { cn } from '@/utils/cn'
 import { Icon } from '@/components/icons'
-
-import { getFontSizeClass } from './utils/get-font-size-class'
-import { ActionType } from './reducers/calculator-reducer'
-import { useCalculator } from './hooks/use-calculator'
-
-import TimeDisplay from './time-display'
-import IphoneIcons from './iphone-icons'
+import { cn } from '@/utils/cn'
 import iphoneFrameImg from './assets/images/iphone-15.png'
-
+import { useCalculator } from './hooks/use-calculator'
+import IphoneIcons from './iphone-icons'
+import { ActionType } from './reducers/calculator-reducer'
+import TimeDisplay from './time-display'
+import { getFontSizeClass } from './utils/get-font-size-class'
 import './stylesheet.css'
 
 const IosCalculator: React.FC = () => {
@@ -46,7 +42,7 @@ const IosCalculator: React.FC = () => {
   }
 
   return (
-    <div className="w-[286px] h-[586px] relative select-none">
+    <div className="relative h-[586px] w-[286px] select-none">
       <Image
         src={iphoneFrameImg}
         alt="iphone 15"
@@ -54,18 +50,18 @@ const IosCalculator: React.FC = () => {
         height={1355}
         priority
       />
-      <div className="absolute w-full top-5 px-10 left-0 flex justify-between items-center h-6">
+      <div className="absolute left-0 top-5 flex h-6 w-full items-center justify-between px-10">
         <div>
           <TimeDisplay />
         </div>
         <IphoneIcons />
       </div>
-      <div className="absolute w-[260px] left-0 right-0 mx-auto bottom-0">
+      <div className="absolute bottom-0 left-0 right-0 mx-auto w-[260px]">
         <div className="px-2 pb-12">
           <div
             className={cn(
               fontSizeClass,
-              'text-[#cccccc] mb-3 font-sf-pro-light !leading-none px-2 h-16 flex items-center justify-end',
+              'font-sf-pro-light mb-3 flex h-16 items-center justify-end px-2 !leading-none text-[#cccccc]',
             )}
           >
             <span>{formatDisplay(state.display)}</span>
@@ -173,7 +169,7 @@ const IosCalculator: React.FC = () => {
               }
               className={cn(
                 numberButtonClass,
-                'col-span-2 w-auto pl-6 justify-start',
+                'col-span-2 w-auto justify-start pl-6',
               )}
             >
               0

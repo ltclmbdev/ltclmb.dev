@@ -1,11 +1,10 @@
 import type { Metadata } from 'next'
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { GeistMono } from 'geist/font/mono'
+import { GeistSans } from 'geist/font/sans'
 import '@/styles/globals.css'
-import config from '@/config'
-
 import Navigation from '@/components/app/navigation'
+import config from '@/config'
 import Providers from '@/providers/providers'
 
 export const metadata: Metadata = {
@@ -29,9 +28,9 @@ export default function RootLayout({
     >
       <body className="antialiased">
         <Providers>
-          <div className="flex flex-col min-h-dvh">
+          <div className="flex min-h-dvh flex-col">
             <Navigation />
-            <main className="grow flex">{children}</main>
+            <main className="flex grow">{children}</main>
           </div>
         </Providers>
       </body>

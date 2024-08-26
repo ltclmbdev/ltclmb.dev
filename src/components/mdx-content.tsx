@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { compileMDX, type MDXRemoteProps } from 'next-mdx-remote/rsc'
-
-import { getHighlighter, highlightCode } from '@/utils/code-highlight'
 import ImageWithBlur from '@/components/image-with-blur'
+import { getHighlighter, highlightCode } from '@/utils/code-highlight'
 
 const CodeComponent: React.FC<
   React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>

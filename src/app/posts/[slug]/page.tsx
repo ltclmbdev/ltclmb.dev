@@ -1,8 +1,8 @@
 import React from 'react'
-import { getAllPosts, getPostBySlug } from '@/lib/posts'
-import PostTemplate from '@/templates/post-template'
 import { Metadata } from 'next'
 import config from '@/config'
+import { getAllPosts, getPostBySlug } from '@/lib/posts'
+import PostTemplate from '@/templates/post-template'
 
 export async function generateMetadata({
   params,
@@ -48,7 +48,7 @@ export default async function PostPage({
   const post = await getPostBySlug(params.slug)
 
   return (
-    <div className="container pb-16 md:pb-24 lg:pb-40 pt-8 md:pt-12">
+    <div className="container pb-16 pt-8 md:pb-24 md:pt-12 lg:pb-40">
       <PostTemplate post={post} />
     </div>
   )

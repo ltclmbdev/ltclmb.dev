@@ -1,12 +1,12 @@
-import { formatNumber } from '../utils/format-number'
 import { calculate } from '../utils/calculate'
-import { countSignificantDigits } from '../utils/count-significant-digits'
-import { isHighPriorityOperation } from '../utils/is-high-priority-operation'
 import {
-  MAX_DISPLAY_DIGITS,
   DECIMAL_SEPARATOR,
   ERROR_MESSAGE,
+  MAX_DISPLAY_DIGITS,
 } from '../utils/constants'
+import { countSignificantDigits } from '../utils/count-significant-digits'
+import { formatNumber } from '../utils/format-number'
+import { isHighPriorityOperation } from '../utils/is-high-priority-operation'
 
 export enum ActionType {
   INPUT_DIGIT = 'INPUT_DIGIT',

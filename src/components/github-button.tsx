@@ -2,8 +2,8 @@
 
 import React from 'react'
 import { Icon } from '@/components/icons'
-import { Button } from './ui/button'
 import { cn } from '@/utils/cn'
+import { Button } from './ui/button'
 
 interface GithubButtonProps {
   url: string

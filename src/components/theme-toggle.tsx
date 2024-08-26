@@ -1,9 +1,8 @@
 'use client'
 
-import { Icon } from '@/components/icons'
-import { useTheme } from 'next-themes'
 import * as React from 'react'
-
+import { useTheme } from 'next-themes'
+import { Icon } from '@/components/icons'
 import { Button } from '@/components/ui/button'
 import {
   Tooltip,
@@ -27,12 +26,12 @@ const ThemeToggle: React.FC<{ className?: string }> = () => {
             variant={null}
             size="icon"
             onClick={toggleTheme}
-            className="px-0 w-auto"
+            className="w-auto px-0"
           >
-            <div className="text-xl md:text-2xl rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 cursor-pointer">
+            <div className="rotate-0 scale-100 cursor-pointer text-xl transition-all dark:-rotate-90 dark:scale-0 md:text-2xl">
               <Icon name="Moon" size="20" />
             </div>
-            <div className="absolute text-xl md:text-2xl rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100">
+            <div className="absolute rotate-90 scale-0 text-xl transition-all dark:rotate-0 dark:scale-100 md:text-2xl">
               <Icon name="Sun" size="20" />
             </div>
             <span className="sr-only">Toggle theme</span>

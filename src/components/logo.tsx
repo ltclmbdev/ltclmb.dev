@@ -90,7 +90,7 @@ const Logo: React.FC = () => {
       fill="none"
       viewBox="0 0 167 52"
       preserveAspectRatio="xMinYMid meet"
-      className="w-full h-auto max-w-[167px]"
+      className="h-auto w-full max-w-[167px]"
     >
       <g fill="var(--logo-fill)">
         <g>

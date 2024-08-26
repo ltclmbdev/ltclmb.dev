@@ -3,8 +3,8 @@
 import React from 'react'
 import { usePathname } from 'next/navigation'
 import { Icon } from '@/components/icons'
-import { Button } from './ui/button'
 import { cn } from '@/utils/cn'
+import { Button } from './ui/button'
 
 interface ShareButtonProps {
   title: string

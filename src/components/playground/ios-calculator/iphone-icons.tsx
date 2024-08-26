@@ -1,6 +1,6 @@
 const IphoneIcons = () => {
   return (
-    <div className="flex gap-1 items-center">
+    <div className="flex items-center gap-1">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="13"

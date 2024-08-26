@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const TextToSpeech: React.FC = () => {
   const [isSupported, setIsSupported] = useState<boolean>(true)
@@ -33,19 +33,19 @@ const TextToSpeech: React.FC = () => {
     <div>
       <button
         onClick={() => handleSpeak('Yevhen Nahalskyi', 'en-US')}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
+        className="m-2 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
       >
         🇺🇸
       </button>
       <button
         onClick={() => handleSpeak('Евгений Нагальский', 'ru-RU')}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
+        className="m-2 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
       >
         🇷🇺
       </button>
       <button
         onClick={() => handleSpeak('Євген Нагальський', 'uk-UA')}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
+        className="m-2 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
       >
         🇺🇦
       </button>

@@ -1,4 +1,4 @@
-import { MAX_DISPLAY_DIGITS, DECIMAL_SEPARATOR } from './constants'
+import { DECIMAL_SEPARATOR, MAX_DISPLAY_DIGITS } from './constants'
 
 export const formatNumber = (num: number | string): string => {
   if (typeof num === 'string') return num

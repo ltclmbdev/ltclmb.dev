@@ -1,8 +1,8 @@
-import { MetadataRoute } from 'next'
-import { getAllPosts, type Post } from '@/lib/posts'
-import config from '@/config'
 import fs from 'fs'
 import path from 'path'
+import { MetadataRoute } from 'next'
+import config from '@/config'
+import { getAllPosts, type Post } from '@/lib/posts'
 
 async function getPlaygroundSlugs(): Promise<string[]> {
   const playgroundPath = path.join(process.cwd(), 'src', 'app', 'playground')

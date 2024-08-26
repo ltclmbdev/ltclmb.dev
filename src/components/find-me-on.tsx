@@ -1,17 +1,17 @@
 'use client'
 
 import * as React from 'react'
-import { Button } from '@/components/ui/button'
 import { Icon } from '@/components/icons'
+import { Button } from '@/components/ui/button'
 import { cn } from '@/utils/cn'
 
 const FindMeOn: React.FC<{ className?: string }> = ({ className }) => {
   return (
-    <div className={cn('flex flex-wrap gap-2 w-full', className)}>
+    <div className={cn('flex w-full flex-wrap gap-2', className)}>
       <Button
         asChild
         variant="outline"
-        className="dark:bg-zinc-900 dark:border-zinc-600 hover:dark:bg-zinc-800 duration-300 bg-zinc-50 hover:bg-zinc-100"
+        className="bg-zinc-50 duration-300 hover:bg-zinc-100 dark:border-zinc-600 dark:bg-zinc-900 hover:dark:bg-zinc-800"
       >
         <a
           rel="noopener noreferrer"
@@ -29,7 +29,7 @@ const FindMeOn: React.FC<{ className?: string }> = ({ className }) => {
       <Button
         asChild
         variant="outline"
-        className="dark:bg-zinc-900 dark:border-zinc-600 hover:dark:bg-zinc-800 duration-300 bg-zinc-50 hover:bg-zinc-100"
+        className="bg-zinc-50 duration-300 hover:bg-zinc-100 dark:border-zinc-600 dark:bg-zinc-900 hover:dark:bg-zinc-800"
       >
         <a
           target="_blank"
@@ -44,18 +44,18 @@ const FindMeOn: React.FC<{ className?: string }> = ({ className }) => {
       <Button
         asChild
         variant="outline"
-        className="dark:bg-zinc-900 dark:border-zinc-600 hover:dark:bg-zinc-800 duration-300 bg-zinc-50 hover:bg-zinc-100"
+        className="bg-zinc-50 duration-300 hover:bg-zinc-100 dark:border-zinc-600 dark:bg-zinc-900 hover:dark:bg-zinc-800"
       >
         <a
           target="_blank"
           rel="noopener noreferrer"
           href="https://www.linkedin.com/in/yevhen-nahalskyi-693955241/"
-          className="space-x-1 group"
+          className="group space-x-1"
         >
           <Icon
             name="Linkedin"
             size="16"
-            className="text-base group-hover:text-[#0077B5] duration-300"
+            className="text-base duration-300 group-hover:text-[#0077B5]"
           />
           <span>LinkedIn</span>
         </a>
@@ -63,18 +63,18 @@ const FindMeOn: React.FC<{ className?: string }> = ({ className }) => {
       <Button
         asChild
         variant="outline"
-        className="dark:bg-zinc-900 dark:border-zinc-600 hover:dark:bg-zinc-800 duration-300 bg-zinc-50 hover:bg-zinc-100"
+        className="bg-zinc-50 duration-300 hover:bg-zinc-100 dark:border-zinc-600 dark:bg-zinc-900 hover:dark:bg-zinc-800"
       >
         <a
           target="_blank"
           rel="noopener noreferrer"
           href="https://www.upwork.com/freelancers/evgeniynagalskiy"
-          className="space-x-1 group"
+          className="group space-x-1"
         >
           <Icon
             name="Upwork"
             size="16"
-            className="text-base group-hover:text-[#14a800] duration-300"
+            className="text-base duration-300 group-hover:text-[#14a800]"
           />
           <span>UpWork</span>
         </a>
@@ -82,7 +82,7 @@ const FindMeOn: React.FC<{ className?: string }> = ({ className }) => {
       <Button
         asChild
         variant="outline"
-        className="dark:bg-zinc-900 dark:border-zinc-600 hover:dark:bg-zinc-800 duration-300 bg-zinc-50 hover:bg-zinc-100"
+        className="bg-zinc-50 duration-300 hover:bg-zinc-100 dark:border-zinc-600 dark:bg-zinc-900 hover:dark:bg-zinc-800"
       >
         <a
           target="_blank"
@@ -96,7 +96,7 @@ const FindMeOn: React.FC<{ className?: string }> = ({ className }) => {
       </Button>
       <Button
         variant="outline"
-        className="dark:bg-zinc-900 dark:border-zinc-600 hover:dark:bg-zinc-800 duration-300 bg-zinc-50 hover:bg-zinc-100 space-x-1"
+        className="space-x-1 bg-zinc-50 duration-300 hover:bg-zinc-100 dark:border-zinc-600 dark:bg-zinc-900 hover:dark:bg-zinc-800"
         onClick={() => window.open('/cv/cv-yevhen-nahalskyi.pdf', '_blank')}
       >
         <Icon name="Download" size="16" className="text-base" />

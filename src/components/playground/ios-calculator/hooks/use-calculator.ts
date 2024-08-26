@@ -1,10 +1,10 @@
 import * as React from 'react'
 import {
+  Action,
+  ActionType,
   calculatorReducer,
   initialState,
   State,
-  Action,
-  ActionType,
 } from '../reducers/calculator-reducer'
 import { DECIMAL_SEPARATOR } from '../utils/constants'
 

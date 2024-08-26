@@ -2,10 +2,9 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-
-import { cn } from '@/utils/cn'
 import Logo from '@/components/logo'
 import ThemeToggle from '@/components/theme-toggle'
+import { cn } from '@/utils/cn'
 import MobileMenu from './mobile-menu'
 
 const Navigation = () => {
@@ -26,7 +25,7 @@ const Navigation = () => {
 
   return (
     <header className="py-2">
-      <nav className="container max-w-none flex justify-between">
+      <nav className="container flex max-w-none justify-between">
         <Link href="/" className="w-32 md:w-auto">
           <Logo />
         </Link>

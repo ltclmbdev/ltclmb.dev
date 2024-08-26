@@ -3,10 +3,9 @@
 import * as React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-
-import { cn } from '@/utils/cn'
 import { Icon } from '@/components/icons'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import { cn } from '@/utils/cn'
 
 const MobileMenu = () => {
   const pathname = usePathname()
@@ -27,13 +26,13 @@ const MobileMenu = () => {
       isLinkActive(href) ? 'opacity-100' : 'opacity-50',
     )
   return (
-    <div className="sm:hidden flex">
+    <div className="flex sm:hidden">
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger>
           <Icon name="Menu" size="20" />
         </SheetTrigger>
-        <SheetContent className="pt-16 bg-slate-100 dark:bg-slate-900">
-          <div className="gap-6 flex flex-col items-start">
+        <SheetContent className="bg-slate-100 pt-16 dark:bg-slate-900">
+          <div className="flex flex-col items-start gap-6">
             <Link
               href="/posts"
               className={linkClass('/posts')}

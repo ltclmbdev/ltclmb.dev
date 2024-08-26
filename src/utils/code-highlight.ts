@@ -1,8 +1,8 @@
 import {
-  getSingletonHighlighter,
-  HighlighterGeneric,
   BundledLanguage,
   BundledTheme,
+  getSingletonHighlighter,
+  HighlighterGeneric,
 } from 'shiki'
 
 let highlighter: HighlighterGeneric<BundledLanguage, BundledTheme> | null = null

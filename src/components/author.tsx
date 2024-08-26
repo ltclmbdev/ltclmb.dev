@@ -1,8 +1,7 @@
 import * as React from 'react'
 import Image from 'next/image'
-
-import { cn } from '@/utils/cn'
 import config from '@/config'
+import { cn } from '@/utils/cn'
 
 const Author: React.FC<{ className?: string }> = ({ className }) => {
   return (
