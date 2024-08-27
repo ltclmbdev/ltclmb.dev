@@ -48,7 +48,7 @@ export default function CalculatorPage() {
         <span>Playground</span>
       </Link>
       <h1 className="mb-4 text-center text-3xl font-bold md:text-4xl">
-        iOS 17 Calculator App
+        {pageMetadata.title}
       </h1>
       <div className="mt-20 flex justify-center">
         <Calculator />
