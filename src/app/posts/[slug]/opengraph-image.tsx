@@ -1,5 +1,5 @@
-import { getPostBySlug } from '@/lib/posts'
 import { ImageResponse } from 'next/og'
+import { getPostBySlug } from '@/lib/posts'
 
 export const runtime = 'edge'
 
@@ -41,6 +41,11 @@ export default async function Image({ params }: { params: { slug: string } }) {
           position: 'relative',
         }}
       >
+        {/*
+           Disabling these rules for image generation in ImageResponse. 
+          Next.js Image component is not applicable here, and alt text is not relevant for this use case.
+        */}
+        {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
         <img
           src={`data:image/png;base64,${logoBase64}`}
           style={{
@@ -78,7 +83,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
             fontFamily: 'GeistBold',
           }}
         >
-          {post.title}
+          {post?.title}
         </div>
       </div>
     ),

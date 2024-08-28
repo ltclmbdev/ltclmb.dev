@@ -1,7 +1,6 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
-
 export const alt = 'Playground'
 export const size = {
   width: 1200,
@@ -9,15 +8,14 @@ export const size = {
 }
 export const contentType = 'image/png'
 
-export default async function Image() {
-  const geistMedium = fetch(
+export default async function OGImage() {
+  const geistMedium = await fetch(
     new URL('../../../public/fonts/Geist-Medium.ttf', import.meta.url),
   ).then(res => res.arrayBuffer())
 
   const logoData = await fetch(
     new URL('../../../public/images/og-logo.png', import.meta.url),
   ).then(res => res.arrayBuffer())
-  const logoBase64 = Buffer.from(logoData).toString('base64')
 
   return new ImageResponse(
     (
@@ -35,11 +33,17 @@ export default async function Image() {
           position: 'relative',
         }}
       >
+        {/*
+          We're using <img> here because the Next.js Image component is not compatible with ImageResponse.
+          This is a valid use case for <img> in Next.js.
+        */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={`data:image/png;base64,${logoBase64}`}
+          src={`data:image/png;base64,${Buffer.from(logoData).toString('base64')}`}
+          width={310}
+          height={100}
+          alt="Logo"
           style={{
-            width: '310px',
-            height: '100px',
             position: 'absolute',
             left: '40px',
             top: '40px',

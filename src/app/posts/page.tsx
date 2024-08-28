@@ -1,7 +1,6 @@
 import * as React from 'react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { isEmpty } from 'lodash'
 import Author from '@/components/author'
 import ImageWithBlur from '@/components/image-with-blur'
 import {
@@ -106,7 +105,12 @@ export default async function PostsPage() {
     (a: Post, b: Post) =>
       new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
   )
-  const recentPost: Post | null = isEmpty(sortedPosts) ? null : sortedPosts[0]
+
+  // Use a type assertion to assure TypeScript that we're handling all cases
+  const recentPost = (
+    sortedPosts.length > 0 ? sortedPosts[0] : null
+  ) as Post | null
+
   const restPosts: Post[] = sortedPosts.length > 1 ? sortedPosts.slice(1) : []
 
   return (
@@ -118,7 +122,7 @@ export default async function PostsPage() {
         Here I post my modest thoughts on front-end development
       </h2>
       {recentPost && <RecentPostPreview post={recentPost} />}
-      {!isEmpty(restPosts) && (
+      {restPosts.length > 0 && (
         <div className="mt-5 grid gap-5 md:grid-cols-2">
           {restPosts.map(post => (
             <PostPreview key={post._id} post={post} />

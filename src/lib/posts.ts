@@ -20,7 +20,7 @@ export type Post = {
 }
 
 export const getAllPosts = async (): Promise<Post[]> => {
-  return client.fetch(
+  const posts = await client.fetch(
     `*[_type == "post"] | order(publishedAt desc) {
       _id,
       _updatedAt,
@@ -38,10 +38,11 @@ export const getAllPosts = async (): Promise<Post[]> => {
     {},
     { next: { revalidate: 60 } },
   )
+  return posts || []
 }
 
-export const getPostBySlug = async (slug: string): Promise<Post> => {
-  return client.fetch(
+export const getPostBySlug = async (slug: string): Promise<Post | null> => {
+  const post = await client.fetch(
     `*[_type == "post" && slug.current == $slug][0]{
       _id,
       publishedAt,
@@ -58,4 +59,5 @@ export const getPostBySlug = async (slug: string): Promise<Post> => {
     { slug },
     { next: { revalidate: 60 } },
   )
+  return post || null
 }
