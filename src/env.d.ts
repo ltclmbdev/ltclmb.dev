@@ -1,0 +1,20 @@
+declare module '@/env.mjs' {
+  export const env: {
+    SANITY_PROJECT_ID: string
+    SANITY_DATASET: string
+    SANITY_API_VERSION: string
+    NEXT_PUBLIC_URL: string
+    NEXT_PUBLIC_SITE_TITLE: string
+    NEXT_PUBLIC_PRODUCT_DESCRIPTION: string
+    NEXT_PUBLIC_SITE_URL: string
+    NEXT_PUBLIC_SEO_KEYWORDS: string
+    NEXT_PUBLIC_AUTHOR_FIRST_NAME: string
+    NEXT_PUBLIC_AUTHOR_LAST_NAME: string
+    NEXT_PUBLIC_AUTHOR_FULL_NAME: string
+    NEXT_PUBLIC_AUTHOR_X: string
+    NEXT_PUBLIC_AUTHOR_EMAIL: string
+    NEXT_PUBLIC_SANITY_PROJECT_ID: string
+    NEXT_PUBLIC_SANITY_DATASET: string
+    NEXT_PUBLIC_SANITY_API_VERSION: string
+  }
+}
