@@ -1,13 +1,11 @@
-/** @type {import("eslint").Linter.Config} */
-const config = {
+module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: true,
   },
   extends: ['next/core-web-vitals'],
-  rules: {
-    'react/no-unescaped-entities': 'off',
-  },
+  // Uncomment the following if you need these rules
+  // rules: {
+  //   'react/no-unescaped-entities': 'off',
+  // },
 }
-
-module.exports = config
