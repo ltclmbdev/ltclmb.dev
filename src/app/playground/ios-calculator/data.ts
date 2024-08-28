@@ -5,9 +5,11 @@ export const pageMetadata: {
   title: string
   description: string
   postImage: StaticImageData
+  slug?: string
 } = {
   title: 'iOS 17 Calculator App clone',
   description:
     'Here I create an iOS 17 Calculator App clone (with some help of Claude)',
   postImage: postImage,
+  slug: 'ios-calculator',
 }

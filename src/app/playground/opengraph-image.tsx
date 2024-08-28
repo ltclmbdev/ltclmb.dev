@@ -16,6 +16,7 @@ export default async function OGImage() {
   const logoData = await fetch(
     new URL('../../../public/images/og-logo.png', import.meta.url),
   ).then(res => res.arrayBuffer())
+  const logoBase64 = Buffer.from(logoData).toString('base64')
 
   return new ImageResponse(
     (
@@ -39,7 +40,7 @@ export default async function OGImage() {
         */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={`data:image/png;base64,${Buffer.from(logoData).toString('base64')}`}
+          src={`data:image/png;base64,${logoBase64}`}
           width={310}
           height={100}
           alt="Logo"

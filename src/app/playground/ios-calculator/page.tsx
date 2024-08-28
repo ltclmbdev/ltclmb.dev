@@ -5,36 +5,34 @@ import GithubButton from '@/components/github-button'
 import { Icon } from '@/components/icons'
 import Calculator from '@/components/playground/ios-calculator/ios-calculator'
 import ShareButton from '@/components/share-button'
-import config from '@/config'
+import { generateBaseMetadata } from '@/config'
+import { env } from '@/env.mjs'
 import { pageMetadata } from './data'
 
-export const metadata: Metadata = {
-  title: pageMetadata.title,
-  description: pageMetadata.description,
-  alternates: {
-    canonical: `${config.defaultSiteUrl}/playground/ios-calculator`,
-  },
-  openGraph: {
-    title: pageMetadata.title,
-    description: pageMetadata.description,
-    url: `${config.defaultSiteUrl}/playground/ios-calculator`,
-    images: [
-      {
-        url: `${config.defaultSiteUrl}/playground/ios-calculator/opengraph-image`,
-        width: 1200,
-        height: 630,
-        alt: 'iOS 17 Calculator App clone',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: pageMetadata.title,
-    description: pageMetadata.description,
-    images: [
-      `${config.defaultSiteUrl}/playground/ios-calculator/opengraph-image`,
-    ],
-  },
+export async function generateMetadata(): Promise<Metadata> {
+  const baseMetadata: Metadata = generateBaseMetadata(
+    `/playground/${pageMetadata.slug}`,
+  )
+
+  return {
+    ...baseMetadata,
+    title: `${pageMetadata.title} | ${env.NEXT_PUBLIC_APP_NAME}`,
+    description: `${pageMetadata.description}`,
+    openGraph: {
+      title: `${pageMetadata.title} | ${env.NEXT_PUBLIC_APP_NAME}`,
+      url: `/playground/${pageMetadata.slug}`,
+      images: [
+        {
+          url: `/playground/${pageMetadata.slug}/opengraph-image`,
+        },
+      ],
+    },
+    twitter: {
+      title: `${pageMetadata.title} | ${env.NEXT_PUBLIC_APP_NAME}`,
+      description: `${pageMetadata.description}`,
+      images: [`/playground/${pageMetadata.slug}/opengraph-image`],
+    },
+  }
 }
 
 export default function CalculatorPage() {

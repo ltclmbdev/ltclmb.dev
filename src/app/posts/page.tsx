@@ -10,36 +10,61 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import config from '@/config'
+import { generateBaseMetadata } from '@/config'
+import { env } from '@/env.mjs'
 import { getAllPosts, type Post } from '@/lib/posts'
 import { formatDate } from '@/utils/format-date'
 
-export const metadata: Metadata = {
-  title: `${config.defaultTitle} - All Posts`,
-  description: 'All posts at ltclmb.dev',
-  alternates: {
-    canonical: `${config.defaultSiteUrl}/posts`,
-  },
-  openGraph: {
-    title: `${config.defaultTitle} - All Posts`,
-    description: 'All posts at ltclmb.dev',
-    url: `${config.defaultSiteUrl}/posts/`,
-    images: [
-      {
-        url: `${config.defaultSiteUrl}/posts/opengraph-image`,
-        width: 1200,
-        height: 630,
-        alt: 'All Posts',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: `${config.defaultTitle} - All Posts`,
-    description: 'All posts at ltclmb.dev',
-    images: [`${config.defaultSiteUrl}/posts/opengraph-image`],
-  },
+export async function generateMetadata(): Promise<Metadata> {
+  const baseMetadata: Metadata = generateBaseMetadata('/posts')
+
+  return {
+    ...baseMetadata,
+    title: `Posts | ${env.NEXT_PUBLIC_APP_NAME}`,
+    description: 'Posts at ltclmb.dev',
+    openGraph: {
+      title: `Posts | ${env.NEXT_PUBLIC_APP_NAME}`,
+      url: '/posts',
+      images: [
+        {
+          url: '/posts/opengraph-image',
+        },
+      ],
+    },
+    twitter: {
+      title: `Posts | ${env.NEXT_PUBLIC_APP_NAME}`,
+      description: 'Posts at ltclmb.dev',
+      images: ['/posts/opengraph-image'],
+    },
+  }
 }
+
+// export const metadata: Metadata = {
+//   title: `${config.defaultTitle} - All Posts`,
+//   description: 'All posts at ltclmb.dev',
+//   alternates: {
+//     canonical: `${config.defaultSiteUrl}/posts`,
+//   },
+//   openGraph: {
+//     title: `${config.defaultTitle} - All Posts`,
+//     description: 'All posts at ltclmb.dev',
+//     url: `${config.defaultSiteUrl}/posts/`,
+//     images: [
+//       {
+//         url: `${config.defaultSiteUrl}/posts/opengraph-image`,
+//         width: 1200,
+//         height: 630,
+//         alt: 'All Posts',
+//       },
+//     ],
+//   },
+//   twitter: {
+//     card: 'summary_large_image',
+//     title: `${config.defaultTitle} - All Posts`,
+//     description: 'All posts at ltclmb.dev',
+//     images: [`${config.defaultSiteUrl}/posts/opengraph-image`],
+//   },
+// }
 
 const RecentPostPreview: React.FC<{ post: Post }> = ({ post }) => (
   <div className="rounded-lg bg-gradient-to-tr from-[#538392] to-[#76ABAE] shadow-2xl shadow-gray-500/20">

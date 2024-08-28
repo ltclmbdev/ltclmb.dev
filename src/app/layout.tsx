@@ -4,16 +4,10 @@ import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
 import '@/styles/globals.css'
 import Navigation from '@/components/app/navigation'
-import config from '@/config'
+import { generateBaseMetadata } from '@/config'
 import Providers from '@/providers/providers'
 
-export const metadata: Metadata = {
-  title: config.defaultTitle,
-  description: config.defaultDescription,
-  alternates: {
-    canonical: config.defaultSiteUrl,
-  },
-}
+export const metadata: Metadata = generateBaseMetadata()
 
 export default function RootLayout({
   children,
@@ -22,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="en-US"
       className={`${GeistSans.variable} ${GeistMono.variable}`}
       suppressHydrationWarning={true}
     >

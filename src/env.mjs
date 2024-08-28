@@ -9,6 +9,7 @@ export const env = createEnv({
   },
   client: {
     NEXT_PUBLIC_URL: z.string().url(),
+    NEXT_PUBLIC_APP_NAME: z.string(),
     NEXT_PUBLIC_SITE_TITLE: z.string(),
     NEXT_PUBLIC_PRODUCT_DESCRIPTION: z.string(),
     NEXT_PUBLIC_SEO_KEYWORDS: z.string(),
@@ -26,6 +27,7 @@ export const env = createEnv({
     SANITY_DATASET: process.env.SANITY_DATASET,
     SANITY_API_VERSION: process.env.SANITY_API_VERSION,
     NEXT_PUBLIC_URL: process.env.NEXT_PUBLIC_URL,
+    NEXT_PUBLIC_APP_NAME: process.env.NEXT_PUBLIC_APP_NAME,
     NEXT_PUBLIC_SITE_TITLE: process.env.NEXT_PUBLIC_SITE_TITLE,
     NEXT_PUBLIC_PRODUCT_DESCRIPTION:
       process.env.NEXT_PUBLIC_PRODUCT_DESCRIPTION,

@@ -5,40 +5,38 @@ import type { Metadata } from 'next'
 import Image, { StaticImageData } from 'next/image'
 import Link from 'next/link'
 import { isEmpty } from 'lodash'
-import config from '@/config'
+import { generateBaseMetadata } from '@/config'
+import { env } from '@/env.mjs'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const baseMetadata: Metadata = generateBaseMetadata('/playground')
+
+  return {
+    ...baseMetadata,
+    title: `Playground | ${env.NEXT_PUBLIC_APP_NAME}`,
+    description: 'Playground at ltclmb.dev',
+    openGraph: {
+      title: `Playground | ${env.NEXT_PUBLIC_APP_NAME}`,
+      url: '/playground',
+      images: [
+        {
+          url: '/playground/opengraph-image',
+        },
+      ],
+    },
+    twitter: {
+      title: `Playground | ${env.NEXT_PUBLIC_APP_NAME}`,
+      description: 'Playground at ltclmb.dev',
+      images: ['/playground/opengraph-image'],
+    },
+  }
+}
 
 type PlaygroundEntry = {
   slug: string
   title: string
   description: string | undefined
   postImage: StaticImageData
-}
-
-export const metadata: Metadata = {
-  title: `${config.defaultTitle} - Playground`,
-  description: 'Playground at ltclmb.dev',
-  alternates: {
-    canonical: `${config.defaultSiteUrl}/playground`,
-  },
-  openGraph: {
-    title: `${config.defaultTitle} - Playground`,
-    description: 'Playground at ltclmb.dev',
-    url: `${config.defaultSiteUrl}/playground/`,
-    images: [
-      {
-        url: `${config.defaultSiteUrl}/playground/opengraph-image`,
-        width: 1200,
-        height: 630,
-        alt: 'All Posts',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: `${config.defaultTitle} - Playground`,
-    description: 'Playground at ltclmb.dev',
-    images: [`${config.defaultSiteUrl}/playground/opengraph-image`],
-  },
 }
 
 async function getPlaygroundEntries(): Promise<PlaygroundEntry[]> {

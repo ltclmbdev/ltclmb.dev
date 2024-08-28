@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import { MetadataRoute } from 'next'
-import config from '@/config'
+import { env } from '@/env.mjs'
 import { getAllPosts, type Post } from '@/lib/posts'
 
 async function getPlaygroundSlugs(): Promise<string[]> {
@@ -32,7 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       | 'always'
       | 'never'
 
-    url = `${config.defaultSiteUrl}/posts/${post.slug.current}`
+    url = `${env.NEXT_PUBLIC_URL}/posts/${post.slug.current}`
     priority = 0.8
     changeFrequency = 'monthly'
 
@@ -47,7 +47,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Playground pages
   playgroundSlugs.forEach((slug: string) => {
     sitemapEntries.push({
-      url: `${config.defaultSiteUrl}/playground/${slug}`,
+      url: `${env.NEXT_PUBLIC_URL}/playground/${slug}`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.7,
@@ -56,7 +56,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Posts index
   sitemapEntries.push({
-    url: `${config.defaultSiteUrl}/posts`,
+    url: `${env.NEXT_PUBLIC_URL}/posts`,
     lastModified: new Date(),
     changeFrequency: 'daily',
     priority: 0.9,
@@ -64,7 +64,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Playground index
   sitemapEntries.push({
-    url: `${config.defaultSiteUrl}/playground`,
+    url: `${env.NEXT_PUBLIC_URL}/playground`,
     lastModified: new Date(),
     changeFrequency: 'weekly',
     priority: 0.9,
@@ -72,7 +72,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // About
   sitemapEntries.push({
-    url: `${config.defaultSiteUrl}/about`,
+    url: `${env.NEXT_PUBLIC_URL}/about`,
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.6,
@@ -80,7 +80,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Homepage
   sitemapEntries.unshift({
-    url: `${config.defaultSiteUrl}`,
+    url: `${env.NEXT_PUBLIC_URL}`,
     lastModified: new Date(),
     changeFrequency: 'daily',
     priority: 1,

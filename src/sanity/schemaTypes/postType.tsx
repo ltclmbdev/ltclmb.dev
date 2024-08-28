@@ -62,6 +62,7 @@ export const postType = defineType({
         ...selection,
         subtitle: author && `by ${author}`,
         media: (
+          // eslint-disable-next-line @next/next/no-img-element
           <img
             src={media.secure_url}
             alt="Preview"

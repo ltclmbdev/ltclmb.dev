@@ -1,4 +1,23 @@
+import type { Metadata } from 'next'
 import MdxContent from '@/components/mdx-content'
+import { generateBaseMetadata } from '@/config'
+import { env } from '@/env.mjs'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const baseMetadata: Metadata = generateBaseMetadata('/about')
+
+  return {
+    ...baseMetadata,
+    title: `About me | ${env.NEXT_PUBLIC_APP_NAME}`,
+    openGraph: {
+      title: `About me | ${env.NEXT_PUBLIC_APP_NAME}`,
+      url: `${env.NEXT_PUBLIC_URL}/about`,
+    },
+    twitter: {
+      title: `About me | ${env.NEXT_PUBLIC_APP_NAME}`,
+    },
+  }
+}
 
 const mdxContent = `
 I am Yevhen Nahalskyi, and I currently live in the beautiful city of Ljubljana, Slovenia.

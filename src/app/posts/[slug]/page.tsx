@@ -1,6 +1,7 @@
 import React from 'react'
 import { Metadata } from 'next'
-import config from '@/config'
+import { generateBaseMetadata } from '@/config'
+import { env } from '@/env.mjs'
 import { getAllPosts, getPostBySlug } from '@/lib/posts'
 import PostTemplate from '@/templates/post-template'
 
@@ -10,32 +11,25 @@ export async function generateMetadata({
   params: { slug: string }
 }): Promise<Metadata> {
   const post = await getPostBySlug(params.slug)
+  const baseMetadata: Metadata = generateBaseMetadata(`/posts/${params.slug}`)
 
   return {
-    title: post?.title,
-    description: post?.description,
-    alternates: {
-      canonical: `${config.defaultSiteUrl}/posts/${params.slug}`,
-    },
+    ...baseMetadata,
+    title: `${post?.title} | ${env.NEXT_PUBLIC_APP_NAME}`,
+    description: `${post?.description}`,
     openGraph: {
-      title: post?.title,
-      description: post?.description,
-      type: 'article',
-      url: `${config.defaultSiteUrl}/posts/${params.slug}`,
+      title: `${post?.title} | ${env.NEXT_PUBLIC_APP_NAME}`,
+      url: `/posts/${params.slug}`,
       images: [
         {
-          url: `${config.defaultSiteUrl}/posts/${params.slug}/opengraph-image`,
-          width: 1200,
-          height: 630,
-          alt: post?.title,
+          url: `/posts/${params.slug}/opengraph-image`,
         },
       ],
     },
     twitter: {
-      card: 'summary_large_image',
-      title: post?.title,
-      description: post?.description,
-      images: [`${config.defaultSiteUrl}/posts/${params.slug}/opengraph-image`],
+      title: `${post?.title} | ${env.NEXT_PUBLIC_APP_NAME}`,
+      description: `${post?.description}`,
+      images: [`/posts/${params.slug}/opengraph-image`],
     },
   }
 }

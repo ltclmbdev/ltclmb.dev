@@ -42,15 +42,16 @@ export default async function Image({ params }: { params: { slug: string } }) {
         }}
       >
         {/*
-           Disabling these rules for image generation in ImageResponse. 
-          Next.js Image component is not applicable here, and alt text is not relevant for this use case.
+          We're using <img> here because the Next.js Image component is not compatible with ImageResponse.
+          This is a valid use case for <img> in Next.js.
         */}
-        {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={`data:image/png;base64,${logoBase64}`}
+          width={310}
+          height={100}
+          alt="Logo"
           style={{
-            width: '310px',
-            height: '100px',
             position: 'absolute',
             left: '40px',
             top: '40px',

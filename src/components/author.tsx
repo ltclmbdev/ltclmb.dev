@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Image from 'next/image'
-import config from '@/config'
+import { env } from '@/env.mjs'
 import { cn } from '@/utils/cn'
 
 const Author: React.FC<{ className?: string }> = ({ className }) => {
@@ -9,12 +9,12 @@ const Author: React.FC<{ className?: string }> = ({ className }) => {
       <div className="shrink-0 overflow-hidden rounded-full">
         <Image
           src="/images/me.jpg"
-          alt={config.author || 'Yevhen Nahalskyi'}
+          alt={env.NEXT_PUBLIC_AUTHOR_FULL_NAME}
           width={40}
           height={40}
         />
       </div>
-      <span>{config.author}</span>
+      <span>{env.NEXT_PUBLIC_AUTHOR_FULL_NAME}</span>
     </div>
   )
 }

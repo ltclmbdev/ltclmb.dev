@@ -1,67 +1,113 @@
-// import { DefaultSeoProps } from '@skillrecordings/next-seo'
+import { Metadata, Viewport } from 'next'
+import { env } from '@/env.mjs'
+import { getKeywordsArray } from './utils/get-keywords-array'
 
-// const config: DefaultSeoProps & { author: string } = {
-const config = {
-  defaultTitle: process.env.NEXT_PUBLIC_SITE_TITLE,
-  defaultDescription: process.env.NEXT_PUBLIC_PRODUCT_DESCRIPTION,
-  defaultSiteUrl: process.env.NEXT_PUBLIC_URL,
-  author: process.env.NEXT_PUBLIC_AUTHOR_FULL_NAME,
-  // additionalLinkTags: [
-  //   {
-  //     rel: 'apple-touch-icon',
-  //     sizes: '180x180',
-  //     href: `${process.env.NEXT_PUBLIC_URL}/favicons/apple-touch-icon.png`,
-  //   },
-  //   {
-  //     rel: 'icon',
-  //     type: 'image/png',
-  //     sizes: '32x32',
-  //     href: `${process.env.NEXT_PUBLIC_URL}/favicons/favicon-32x32.png`,
-  //   },
-  //   {
-  //     rel: 'icon',
-  //     type: 'image/png',
-  //     sizes: '16x16',
-  //     href: `${process.env.NEXT_PUBLIC_URL}/favicons/favicon-16x16.png`,
-  //   },
-  //   {
-  //     rel: 'manifest',
-  //     href: `${process.env.NEXT_PUBLIC_URL}/favicons/site.webmanifest`,
-  //   },
-  //   {
-  //     rel: 'shortcut icon',
-  //     href: `${process.env.NEXT_PUBLIC_URL}/favicons/favicon.ico`,
-  //   },
-  // ],
-  additionalMetaTags: [
-    {
-      property: 'author',
-      content: process.env.NEXT_PUBLIC_AUTHOR_FULL_NAME,
+export const generateBaseMetadata = (route: string = ''): Metadata => {
+  const canonicalUrl = new URL(route, env.NEXT_PUBLIC_URL).toString()
+  return {
+    metadataBase: new URL(env.NEXT_PUBLIC_URL),
+    title: env.NEXT_PUBLIC_SITE_TITLE,
+    description: env.NEXT_PUBLIC_PRODUCT_DESCRIPTION,
+    applicationName: env.NEXT_PUBLIC_APP_NAME,
+    authors: [
+      {
+        name: env.NEXT_PUBLIC_AUTHOR_FULL_NAME,
+        url: 'https://x.com/ltclmbdev',
+      },
+    ],
+    generator: 'Next.js',
+    keywords: getKeywordsArray(env.NEXT_PUBLIC_SEO_KEYWORDS),
+    referrer: 'origin-when-cross-origin',
+    creator: env.NEXT_PUBLIC_AUTHOR_FULL_NAME,
+    publisher: env.NEXT_PUBLIC_AUTHOR_FULL_NAME,
+    robots: {
+      index: true,
+      follow: true,
+      nocache: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        noimageindex: true,
+      },
     },
-    {
-      property: 'keywords',
-      content: process.env.NEXT_PUBLIC_SEO_KEYWORDS,
+    alternates: {
+      canonical: canonicalUrl,
     },
-  ],
-  twitter: {
-    cardType: 'summary_large_image',
-    handle: process.env.NEXT_PUBLIC_AUTHOR_TWITTER,
-  },
-  openGraph: {
-    type: 'website',
-    site_name: process.env.NEXT_PUBLIC_SITE_TITLE,
-    profile: {
-      firstName: process.env.NEXT_PUBLIC_AUTHOR_FIRST_NAME,
-      lastName: process.env.NEXT_PUBLIC_AUTHOR_LAST_NAME,
+    icons: {
+      icon: [
+        { url: '/favicons/icon.svg', type: 'image/svg+xml' },
+        { url: '/favicons/icon.png', type: 'image/png', sizes: '192x192' },
+      ],
+      apple: [
+        {
+          url: '/favicons/apple-icon.png',
+          sizes: '180x180',
+          type: 'image/png',
+        },
+      ],
+      shortcut: '/favicons/icon.png',
+      other: [
+        {
+          rel: 'apple-touch-icon-precomposed',
+          url: '/favicons/apple-icon.png',
+        },
+      ],
     },
-    // images: [
-    //   {
-    //     url: `${process.env.NEXT_PUBLIC_URL}/og-images/og-image@2x.jpg`,
-    //     width: 1200,
-    //     height: 630,
-    //   },
-    // ],
-  },
+    openGraph: {
+      title: env.NEXT_PUBLIC_SITE_TITLE,
+      description: env.NEXT_PUBLIC_PRODUCT_DESCRIPTION,
+      url: env.NEXT_PUBLIC_URL,
+      siteName: env.NEXT_PUBLIC_APP_NAME,
+      images: [
+        {
+          url: '/images/opengraph-image.png',
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: env.NEXT_PUBLIC_SITE_TITLE,
+      description: env.NEXT_PUBLIC_PRODUCT_DESCRIPTION,
+      creator: env.NEXT_PUBLIC_AUTHOR_X,
+      images: ['/images/opengraph-image.png'],
+    },
+    verification: {
+      google:
+        'google-site-verification=ETAtrMtrB_9zfwhBziRD7WB10Ldvv53lGy8457_UoAE',
+      other: {
+        'me:email': `mailto:${env.NEXT_PUBLIC_AUTHOR_EMAIL}`,
+        'me:website': env.NEXT_PUBLIC_URL,
+      },
+    },
+    appleWebApp: {
+      capable: true,
+      title: env.NEXT_PUBLIC_APP_NAME,
+      statusBarStyle: 'black-translucent',
+    },
+    formatDetection: {
+      email: false,
+      address: false,
+      telephone: false,
+    },
+    abstract: env.NEXT_PUBLIC_PRODUCT_DESCRIPTION,
+    category: 'Web Development',
+    classification: 'Web Application',
+  }
 }
 
-export default config
+export const generateBaseViewport = (): Viewport => {
+  return {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    themeColor: [
+      { media: '(prefers-color-scheme: light)', color: '#fff' },
+      { media: '(prefers-color-scheme: dark)', color: '#000' },
+    ],
+    colorScheme: 'light dark',
+  }
+}
