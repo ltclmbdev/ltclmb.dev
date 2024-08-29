@@ -41,7 +41,7 @@ const MobileMenu = () => {
               Posts
             </Link>
             <Link
-              href="/posts"
+              href="/playground"
               className={linkClass('/playground')}
               onClick={handleCloseSheet}
             >
