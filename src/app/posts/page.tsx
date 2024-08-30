@@ -39,33 +39,6 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-// export const metadata: Metadata = {
-//   title: `${config.defaultTitle} - All Posts`,
-//   description: 'All posts at ltclmb.dev',
-//   alternates: {
-//     canonical: `${config.defaultSiteUrl}/posts`,
-//   },
-//   openGraph: {
-//     title: `${config.defaultTitle} - All Posts`,
-//     description: 'All posts at ltclmb.dev',
-//     url: `${config.defaultSiteUrl}/posts/`,
-//     images: [
-//       {
-//         url: `${config.defaultSiteUrl}/posts/opengraph-image`,
-//         width: 1200,
-//         height: 630,
-//         alt: 'All Posts',
-//       },
-//     ],
-//   },
-//   twitter: {
-//     card: 'summary_large_image',
-//     title: `${config.defaultTitle} - All Posts`,
-//     description: 'All posts at ltclmb.dev',
-//     images: [`${config.defaultSiteUrl}/posts/opengraph-image`],
-//   },
-// }
-
 const RecentPostPreview: React.FC<{ post: Post }> = ({ post }) => (
   <div className="rounded-lg bg-gradient-to-tr from-[#538392] to-[#76ABAE] shadow-2xl shadow-gray-500/20">
     <Card className="rounded-nonem bg-transparent text-white">
@@ -131,7 +104,6 @@ export default async function PostsPage() {
       new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
   )
 
-  // Use a type assertion to assure TypeScript that we're handling all cases
   const recentPost = (
     sortedPosts.length > 0 ? sortedPosts[0] : null
   ) as Post | null
@@ -139,21 +111,23 @@ export default async function PostsPage() {
   const restPosts: Post[] = sortedPosts.length > 1 ? sortedPosts.slice(1) : []
 
   return (
-    <div className="container pb-16 pt-8 md:pb-24 md:pt-12 lg:pb-40">
+    <div className="container flex flex-col items-center pb-16 pt-8 md:pb-24 md:pt-12 lg:pb-40">
       <h1 className="mb-4 text-center text-3xl font-bold md:text-4xl">
         All Posts
       </h1>
       <h2 className="mb-10 text-center text-base font-medium text-muted-foreground md:mb-16 md:text-lg">
         Here I post my modest thoughts on front-end development
       </h2>
-      {recentPost && <RecentPostPreview post={recentPost} />}
-      {restPosts.length > 0 && (
-        <div className="mt-5 grid gap-5 md:grid-cols-2">
-          {restPosts.map(post => (
-            <PostPreview key={post._id} post={post} />
-          ))}
-        </div>
-      )}
+      <div className="max-w-5xl">
+        {recentPost && <RecentPostPreview post={recentPost} />}
+        {restPosts.length > 0 && (
+          <div className="mt-5 grid gap-5 md:grid-cols-2">
+            {restPosts.map(post => (
+              <PostPreview key={post._id} post={post} />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   )
 }

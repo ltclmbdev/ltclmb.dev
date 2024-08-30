@@ -1,7 +1,7 @@
 declare module '@/env.mjs' {
   export const env: {
-    SANITY_PROJECT_ID: string
-    SANITY_DATASET: string
+    SANITY_STUDIO_PROJECT_ID: string
+    SANITY_STUDIO_DATASET: string
     SANITY_API_VERSION: string
     NEXT_PUBLIC_URL: string
     NEXT_PUBLIC_APP_NAME: string
@@ -13,8 +13,8 @@ declare module '@/env.mjs' {
     NEXT_PUBLIC_AUTHOR_FULL_NAME: string
     NEXT_PUBLIC_AUTHOR_X: string
     NEXT_PUBLIC_AUTHOR_EMAIL: string
-    NEXT_PUBLIC_SANITY_PROJECT_ID: string
-    NEXT_PUBLIC_SANITY_DATASET: string
-    NEXT_PUBLIC_SANITY_API_VERSION: string
+    // NEXT_PUBLIC_SANITY_PROJECT_ID: string
+    // NEXT_PUBLIC_SANITY_DATASET: string
+    // NEXT_PUBLIC_SANITY_API_VERSION: string
   }
 }

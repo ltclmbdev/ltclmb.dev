@@ -1,15 +1,18 @@
 import { ImageResponse } from 'next/og'
+import { getPlaygroundBySlug } from '@/lib/playground'
 
 export const runtime = 'edge'
 
-export const alt = 'iOS 17 Calculator App'
+export const alt = 'Post'
 export const size = {
   width: 1200,
   height: 630,
 }
 export const contentType = 'image/png'
 
-export default async function Image() {
+export default async function Image({ params }: { params: { slug: string } }) {
+  const playground = await getPlaygroundBySlug(params.slug)
+
   const geistRegular = fetch(
     new URL('../../../../public/fonts/Geist-Regular.ttf', import.meta.url),
   ).then(res => res.arrayBuffer())
@@ -81,7 +84,7 @@ export default async function Image() {
             fontFamily: 'GeistBold',
           }}
         >
-          iOS 17 Calculator App
+          {playground?.title}
         </div>
       </div>
     ),

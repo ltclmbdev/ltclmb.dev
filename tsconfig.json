@@ -33,7 +33,8 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "sanity.config.ts"
   ],
   "exclude": ["node_modules"]
 }

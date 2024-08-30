@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { compileMDX, type MDXRemoteProps } from 'next-mdx-remote/rsc'
 import ImageWithBlur from '@/components/image-with-blur'
+import IosCalculator from '@/components/playground/ios-calculator/ios-calculator'
 import { getHighlighter, highlightCode } from '@/utils/code-highlight'
 
 const CodeComponent: React.FC<
@@ -35,6 +36,7 @@ const components: MDXRemoteProps['components'] = {
   code: CodeComponent,
   pre: ({ children }) => children,
   ImageWithBlur,
+  IosCalculator,
 }
 
 interface MdxContentProps {
