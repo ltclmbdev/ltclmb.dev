@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import { MetadataRoute } from 'next'
 import { env } from '@/env.mjs'
+import { getAllPlaygroundItems, type Playground } from '@/lib/playground'
 import { getAllPosts, type Post } from '@/lib/posts'
 
 async function getPlaygroundSlugs(): Promise<string[]> {
@@ -17,7 +18,15 @@ async function getPlaygroundSlugs(): Promise<string[]> {
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const sitemapEntries: MetadataRoute.Sitemap = []
   const posts = await getAllPosts()
-  const playgroundSlugs = await getPlaygroundSlugs()
+  const playgroundItems = await getAllPlaygroundItems()
+
+  // Posts index
+  sitemapEntries.push({
+    url: `${env.NEXT_PUBLIC_URL}/posts`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 0.9,
+  })
 
   // Individual Posts
   posts.forEach((post: Post) => {
@@ -44,30 +53,37 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
   })
 
-  // Playground pages
-  playgroundSlugs.forEach((slug: string) => {
-    sitemapEntries.push({
-      url: `${env.NEXT_PUBLIC_URL}/playground/${slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    })
-  })
-
-  // Posts index
+  // Playground index
   sitemapEntries.push({
-    url: `${env.NEXT_PUBLIC_URL}/posts`,
+    url: `${env.NEXT_PUBLIC_URL}/playground`,
     lastModified: new Date(),
     changeFrequency: 'daily',
     priority: 0.9,
   })
 
-  // Playground index
-  sitemapEntries.push({
-    url: `${env.NEXT_PUBLIC_URL}/playground`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: 0.9,
+  // Individual Playgrounds
+  playgroundItems.forEach((playground: Playground) => {
+    let url: string
+    let priority: number
+    let changeFrequency:
+      | 'yearly'
+      | 'monthly'
+      | 'weekly'
+      | 'daily'
+      | 'hourly'
+      | 'always'
+      | 'never'
+
+    url = `${env.NEXT_PUBLIC_URL}/playground/${playground.slug.current}`
+    priority = 0.8
+    changeFrequency = 'daily'
+
+    sitemapEntries.push({
+      url,
+      lastModified: new Date(playground._updatedAt),
+      changeFrequency,
+      priority,
+    })
   })
 
   // About
