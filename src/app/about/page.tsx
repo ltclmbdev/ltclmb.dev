@@ -26,7 +26,7 @@ I'm a front-end developer, specializing in JavaScript/TypeScript, ReactJS, NextJ
 
 From 2015 until recently, I worked at [egghead.io](https://egghead.io/) and [Skill Recordings](https://www.skillrecordings.com/), where I was involved in developing cutting-edge e-learning products. My role involved creating seamless user experiences using JavaScript/TypeScript, ReactJS, NextJS, TailwindCSS, shadcn/ui, and the CMS Sanity.io.
 
-I am committed to continuous learning and stay updated with industry trends through platforms like Udemy and Coursera.
+I am committed to continuous learning and stay updated with industry trends.
 
 Outside of work, my interests are quite simple: road trips to beautiful places with my family, raising children, 1970s science fiction books, the TV series ["Columbo"](https://www.imdb.com/title/tt1466074/), good coffee, and 3D printing.
 `
