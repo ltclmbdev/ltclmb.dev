@@ -59,6 +59,26 @@ const FindMeOn: React.FC<{ className?: string }> = ({ className }) => {
         <a
           target="_blank"
           rel="noopener noreferrer"
+          href="https://www.upwork.com/freelancers/nahalskyi"
+          className="group space-x-1"
+          onClick={trackUpworkClick}
+        >
+          <Icon
+            name="Upwork"
+            size="16"
+            className="text-base duration-300 group-hover:text-[#14a800]"
+          />
+          <span>UpWork</span>
+        </a>
+      </Button>
+      <Button
+        asChild
+        variant="outline"
+        className="bg-zinc-50 duration-300 hover:bg-zinc-100 dark:border-zinc-600 dark:bg-zinc-900 hover:dark:bg-zinc-800"
+      >
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
           href="https://github.com/ltclmbdev"
           className="space-x-1"
           onClick={trackGithubClick}

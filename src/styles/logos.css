@@ -179,6 +179,31 @@
   }
 }
 
+/* Privatrezept */
+.card-privatrezept:hover {
+  .privatrezept-logo-text {
+    fill: #02263c;
+  }
+  .privatrezept-light {
+    fill: #30bf9a;
+  }
+  .privatrezept-dark {
+    fill: #068769;
+  }
+}
+
+.dark .card-privatrezept:hover {
+  .privatrezept-logo-text {
+    fill: #fff;
+  }
+  .privatrezept-light {
+    fill: #30bf9a;
+  }
+  .privatrezept-dark {
+    fill: #068769;
+  }
+}
+
 /* common */
 [class*='-logo-'] {
   @apply duration-300;

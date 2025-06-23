@@ -3,6 +3,7 @@ import FindMeOn from '@/components/find-me-on'
 import LogoEggheadio from '@/components/logos/logo-eggheadio'
 import LogoEpicReact from '@/components/logos/logo-epicreact'
 import LogoEpicWeb from '@/components/logos/logo-epicweb'
+import LogoPrivatrezept from '@/components/logos/logo-privatrezept'
 import LogoProTailwind from '@/components/logos/logo-protailwind'
 import LogoTjs from '@/components/logos/logo-tjs'
 import { Card } from '@/components/ui/card'
@@ -40,6 +41,16 @@ export default function Home() {
           Projects I&apos;ve collaborated on:
         </h3>
         <div className="mt-3 grid w-full gap-4 sm:grid-cols-2 md:mt-4">
+          <Card className="card-privatrezept relative aspect-video bg-zinc-50 shadow-none duration-300 hover:bg-zinc-100 dark:border-zinc-600 dark:bg-zinc-900 hover:dark:bg-zinc-800">
+            <a
+              href="https://egghead.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute inset-0 flex items-center justify-center p-6 text-black dark:text-white"
+            >
+              <LogoPrivatrezept />
+            </a>
+          </Card>
           <Card className="card-eggheadio relative aspect-video bg-zinc-50 shadow-none duration-300 hover:bg-zinc-100 dark:border-zinc-600 dark:bg-zinc-900 hover:dark:bg-zinc-800">
             <a
               href="https://egghead.io/"
